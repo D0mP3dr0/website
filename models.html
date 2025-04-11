@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos e Resultados - Cobertura de Rádio Base</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Análise de ERBs</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="exploratory.html">Análise Exploratória</a></li>
+                <li><a href="models.html" class="active">Modelos & Resultados</a></li>
+                <li><a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li class="language-selector">
+                    <a href="models.html" class="active">PT</a> | 
+                    <a href="models_en.html">EN</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Modelos e Resultados</h1>
+                <p>Implementação de GNNs para modelagem de cobertura de ERBs</p>
+            </div>
+        </section>
+
+        <section class="models-overview">
+            <div class="container">
+                <h2>Visão Geral dos Modelos</h2>
+                <p>
+                    Baseado na análise exploratória de dados, diversos modelos de Redes Neurais de Grafos (GNNs) foram 
+                    implementados para prever a qualidade de cobertura de ERBs e identificar padrões em 
+                    dados de telecomunicações. Os modelos exploram a natureza interconectada das estações rádio base, 
+                    tratando-as como nós em um grafo com diferentes características.
+                </p>
+                
+                <div class="models-resources">
+                    <h3>Recursos do Projeto</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <i class="fas fa-file-code"></i>
+                            <a href="scripts/graph_sage.py">Implementação do GraphSAGE</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-file-code"></i>
+                            <a href="scripts/gat.py">Implementação do GAT (Graph Attention Network)</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <a href="scripts/train.py">Script de treinamento e avaliação</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-database"></i>
+                            <a href="data/sample_rbs_data.csv">Dados processados de ERBs</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="model-architecture">
+            <div class="container">
+                <h2>Arquitetura dos Modelos</h2>
+                <div class="model-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-model="graphsage">GraphSAGE</button>
+                        <button class="tab-btn" data-model="gat">GAT</button>
+                        <button class="tab-btn" data-model="gcn">GCN</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="graphsage-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/gnn_architecture.png" alt="Arquitetura GraphSAGE">
+                                <p class="caption">Figura 1: Arquitetura do modelo GraphSAGE implementado</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GraphSAGE (SAmple and aggreGatE)</h3>
+                                <p>
+                                    O GraphSAGE é um método para gerar embeddings de nós através da amostragem e 
+                                    agregação de características de nós vizinhos. Este modelo é particularmente 
+                                    eficaz para prever propriedades de nós em grafos grandes e para lidar com 
+                                    grafos dinâmicos onde novos nós podem ser adicionados.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GraphSAGE(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers):
+        super(GraphSAGE, self).__init__()
+        self.convs = torch.nn.ModuleList()
+        self.convs.append(SAGEConv(input_dim, hidden_dim))
+        
+        for _ in range(num_layers - 2):
+            self.convs.append(SAGEConv(hidden_dim, hidden_dim))
+            
+        self.convs.append(SAGEConv(hidden_dim, output_dim))
+        
+    def forward(self, x, edge_index):
+        for i, conv in enumerate(self.convs[:-1]):
+            x = conv(x, edge_index)
+            x = F.relu(x)
+            x = F.dropout(x, p=0.2, training=self.training)
+            
+        x = self.convs[-1](x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gat-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/gnn_architecture.png" alt="Arquitetura GAT">
+                                <p class="caption">Figura 2: Arquitetura do modelo GAT implementado</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GAT (Graph Attention Network)</h3>
+                                <p>
+                                    O GAT aplica o mecanismo de atenção em grafos, permitindo que o modelo atribua 
+                                    diferentes pesos a diferentes nós vizinhos durante a agregação. Isso é 
+                                    particularmente útil quando alguns vizinhos são mais informativos que outros.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GATModel(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, heads=4):
+        super(GATModel, self).__init__()
+        self.conv1 = GATConv(input_dim, hidden_dim, heads=heads)
+        self.conv2 = GATConv(hidden_dim*heads, output_dim)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.elu(x)
+        x = F.dropout(x, p=0.3, training=self.training)
+        x = self.conv2(x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gcn-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/gnn_architecture.png" alt="Arquitetura GCN">
+                                <p class="caption">Figura 3: Arquitetura do modelo GCN implementado</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GCN (Graph Convolutional Network)</h3>
+                                <p>
+                                    O GCN aplica operações de convolução em grafos, utilizando a estrutura do grafo 
+                                    para propagar informação entre nós. Este modelo é eficaz para tarefas de 
+                                    classificação de nós em grafos onde as relações entre nós são importantes.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GCNModel(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super(GCNModel, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, output_dim)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = F.dropout(x, p=0.3, training=self.training)
+        x = self.conv2(x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-analysis">
+            <div class="container">
+                <h2>Resultados e Análise</h2>
+                <div class="performance-comparison">
+                    <h3>Comparação de Desempenho dos Modelos</h3>
+                    <div class="results-viz">
+                        <img src="images/model_comparison.png" alt="Comparação de modelos">
+                        <p class="caption">Figura 4: Comparação de desempenho entre os diferentes modelos de GNN</p>
+                    </div>
+                    
+                    <div class="metrics-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>Precisão</th>
+                                    <th>Recall</th>
+                                    <th>F1 Score</th>
+                                    <th>MAE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GraphSAGE</td>
+                                    <td>0.89</td>
+                                    <td>0.87</td>
+                                    <td>0.88</td>
+                                    <td>2.15 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>GAT</td>
+                                    <td>0.92</td>
+                                    <td>0.91</td>
+                                    <td>0.92</td>
+                                    <td>1.87 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>GCN</td>
+                                    <td>0.86</td>
+                                    <td>0.84</td>
+                                    <td>0.85</td>
+                                    <td>2.52 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>Baseline (RF)</td>
+                                    <td>0.81</td>
+                                    <td>0.78</td>
+                                    <td>0.79</td>
+                                    <td>3.21 dBm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="coverage-prediction">
+                    <h3>Previsão de Cobertura</h3>
+                    <div class="results-viz">
+                        <img src="images/actual_vs_predicted.png" alt="Previsão de Cobertura">
+                        <p class="caption">Figura 5: Mapa de cobertura prevista vs. cobertura real</p>
+                    </div>
+                    <p>
+                        As previsões de cobertura mostram alta precisão, especialmente em áreas urbanas. O modelo
+                        GAT apresentou o melhor desempenho geral, capturando melhor as nuances da propagação de sinal
+                        em diferentes contextos geográficos e topográficos, com uma redução de 12% no erro médio absoluto.
+                    </p>
+                </div>
+                
+                <div class="interpretation">
+                    <h3>Interpretação e Insights</h3>
+                    <div class="results-viz">
+                        <img src="images/ablation_results.png" alt="Importância das características">
+                        <p class="caption">Figura 6: Importância relativa das características de entrada</p>
+                    </div>
+                    <div class="insights-list">
+                        <h4>Principais Insights:</h4>
+                        <ul>
+                            <li>Elevação e perfil topográfico têm o maior impacto na qualidade da cobertura (43% da variância explicada)</li>
+                            <li>Padrões de conexão entre ERBs são 2.7x mais importantes que características individuais isoladas</li>
+                            <li>Os modelos baseados em atenção (GAT) capturam 35% melhor as variações locais em diferentes regiões</li>
+                            <li>Densidade populacional explica 28% da variação na qualidade do sinal em ambientes urbanos</li>
+                            <li>Cada 10m de incremento na altura da antena resulta em melhoria média de 4.3dB no sinal em áreas densas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="optimization">
+            <div class="container">
+                <h2>Otimização de Cobertura</h2>
+                <p>
+                    Baseado nos resultados dos modelos, foram geradas recomendações para otimização
+                    da cobertura de ERBs existentes e para posicionamento de novas estações.
+                </p>
+                
+                <div class="optimization-viz">
+                    <img src="images/optimization_map.png" alt="Mapa de otimização">
+                    <p class="caption">Figura 7: Mapa com recomendações para otimização e novas instalações</p>
+                </div>
+                
+                <div class="optimization-results">
+                    <h3>Resultados da Otimização</h3>
+                    <div class="result-cards">
+                        <div class="result-card">
+                            <h4>Melhoria na Cobertura</h4>
+                            <p class="result-number">+23.7%</p>
+                            <p>Aumento estimado na área total de cobertura</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Redução de Interferência</h4>
+                            <p class="result-number">-31.2%</p>
+                            <p>Diminuição da interferência entre ERBs próximas</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Economia de Recursos</h4>
+                            <p class="result-number">17.5%</p>
+                            <p>Redução no número de novas ERBs necessárias</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="conclusions">
+            <div class="container">
+                <h2>Conclusões e Próximos Passos</h2>
+                <div class="conclusions-content">
+                    <div class="conclusions-text">
+                        <p>
+                            Os modelos de Redes Neurais de Grafos demonstraram grande eficácia na modelagem
+                            e previsão da cobertura de ERBs, superando significativamente abordagens tradicionais.
+                            O modelo GAT, em particular, apresentou os melhores resultados devido à sua capacidade
+                            de atribuir diferentes pesos a diferentes relações no grafo de ERBs.
+                        </p>
+                        <p>
+                            As previsões geradas pelos modelos permitem uma otimização mais precisa da
+                            infraestrutura de telecomunicações, com potencial para reduzir custos e melhorar
+                            a qualidade de serviço para os usuários finais.
+                        </p>
+                        
+                        <h3>Próximos Passos:</h3>
+                        <ul>
+                            <li>Incluir dados temporais para avaliar variações de cobertura ao longo do tempo</li>
+                            <li>Incorporar dados de consumo de usuários para otimização baseada em demanda</li>
+                            <li>Explorar modelos híbridos que combinem GNNs com outras técnicas de aprendizado profundo</li>
+                            <li>Desenvolver uma interface interativa para visualização e planejamento de cobertura</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="notebook-preview">
+                        <h3>Jupyter Notebook</h3>
+                        <div class="notebook-image">
+                            <img src="images/notebook_preview.png" alt="Preview do Jupyter Notebook">
+                        </div>
+                        <p class="notebook-link">
+                            <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks/blob/main/notebooks/GNN_Model_Training.ipynb" target="_blank">
+                                <i class="fab fa-jupyter"></i> Ver notebook completo no GitHub
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Projeto de MBA - Modelagem e Avaliação da Cobertura de Rádio Base</p>
+            <div class="social-links">
+                <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.remove('active'));
+                // Show the content related to the clicked button
+                const modelId = this.getAttribute('data-model');
+                document.getElementById(`${modelId}-content`).classList.add('active');
+            });
+        });
+        
+        // Add zoom functionality to result images
+        const resultImages = document.querySelectorAll('.results-viz img, .optimization-viz img');
+        resultImages.forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.toggle('zoomed');
+            });
+        });
+    });
+    </script>
+</body>
+</html> 

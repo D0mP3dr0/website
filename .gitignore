@@ -1,0 +1,22 @@
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Diretórios e arquivos de ambiente de desenvolvimento
+node_modules/
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de backup
+*.bak
+*.tmp
+*~
+
+# Arquivos de log
+*.log
+
+# Arquivos de cache
+.cache/ 

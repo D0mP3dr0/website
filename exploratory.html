@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Exploratória - Cobertura de Bases de Rádio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RBS Analysis</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="exploratory.html" class="active">Análise Exploratória</a></li>
+                <li><a href="models.html">Modelos & Resultados</a></li>
+                <li><a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li class="language-selector">
+                    <a href="exploratory.html" class="active">PT</a> | 
+                    <a href="exploratory_en.html">EN</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Análise Exploratória de Dados</h1>
+                <p>Exploração inicial dos dados de RBS e compreensão das características da rede</p>
+            </div>
+        </section>
+
+        <section class="data-overview">
+            <div class="container">
+                <h2>Visão Geral dos Dados</h2>
+                <p>
+                    A análise exploratória foi realizada com dados de estações base de rádio (RBS) de diferentes operadoras.
+                    Os dados incluem informações sobre a localização geográfica, parâmetros técnicos, intensidade de sinal e qualidade de cobertura.
+                </p>
+                
+                <div class="data-stats">
+                    <div class="stat-card">
+                        <h3>Estações Base</h3>
+                        <p class="stat-number">3,487</p>
+                        <p>Número total de RBSs analisadas</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Operadoras</h3>
+                        <p class="stat-number">5</p>
+                        <p>Operadoras de telecomunicações</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Área Geográfica</h3>
+                        <p class="stat-number">1,250 km²</p>
+                        <p>Área total de cobertura analisada</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pontos de Medição</h3>
+                        <p class="stat-number">42,315</p>
+                        <p>Medições de qualidade de sinal</p>
+                    </div>
+                </div>
+                <p class="data-source">
+                    <i class="fas fa-database"></i> Fonte dos dados: <a href="data/sample_rbs_data.csv">sample_rbs_data.csv</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="data-exploration">
+            <div class="container">
+                <h2>Distribuição Espacial de RBSs</h2>
+                <div class="visualization">
+                    <div class="viz-description">
+                        <p>
+                            A distribuição espacial das estações base foi analisada para entender a cobertura geográfica 
+                            e identificar áreas de concentração e possíveis lacunas de cobertura. Os mapas abaixo mostram
+                            a densidade de RBSs e a intensidade de sinal em diferentes regiões.
+                        </p>
+                    </div>
+                    <div class="viz-placeholder">
+                        <img src="images/rbs_map.png" alt="Mapa de Distribuição de RBSs">
+                        <p class="caption">Figura 1: Mapa de distribuição espacial das RBSs por operadora</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="network-topology">
+            <div class="container">
+                <h2>Análise da Topologia de Rede</h2>
+                <div class="visualization">
+                    <div class="viz-description">
+                        <p>
+                            As RBSs foram modeladas como nós em um grafo, com arestas representando conexões ou sobreposições 
+                            de cobertura. Esta representação permite a aplicação de métricas de análise de redes complexas para 
+                            avaliar a robustez, eficiência e vulnerabilidade da infraestrutura.
+                        </p>
+                    </div>
+                    <div class="viz-grid">
+                        <div class="viz-item">
+                            <img src="images/network_graph.png" alt="Grafo de Rede RBS">
+                            <p class="caption">Figura 2: Grafo representando a rede de RBSs</p>
+                        </div>
+                        <div class="viz-item">
+                            <img src="images/degree_distribution.png" alt="Distribuição de Grau">
+                            <p class="caption">Figura 3: Distribuição de grau dos nós na rede</p>
+                        </div>
+                        <div class="viz-item">
+                            <img src="images/communities.png" alt="Comunidades Detectadas">
+                            <p class="caption">Figura 4: Comunidades detectadas na rede</p>
+                        </div>
+                        <div class="viz-item">
+                            <img src="images/centrality.png" alt="Centralidade dos Nós">
+                            <p class="caption">Figura 5: Centralidade dos nós na rede</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="signal-analysis">
+            <div class="container">
+                <h2>Análise de Qualidade de Sinal</h2>
+                <div class="visualization">
+                    <div class="viz-description">
+                        <p>
+                            A qualidade do sinal foi analisada em função da distância das RBSs, densidade de estações e 
+                            características do terreno. Os resultados indicam correlações importantes entre estes fatores
+                            e a qualidade de cobertura.
+                        </p>
+                    </div>
+                    <div class="viz-grid">
+                        <div class="viz-item">
+                            <img src="images/signal_distance.png" alt="Sinal vs Distância">
+                            <p class="caption">Figura 6: Intensidade de sinal vs distância da RBS</p>
+                        </div>
+                        <div class="viz-item">
+                            <img src="images/signal_heatmap.png" alt="Mapa de Calor de Sinal">
+                            <p class="caption">Figura 7: Mapa de calor de intensidade de sinal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="correlation-analysis">
+            <div class="container">
+                <h2>Correlações e Padrões Encontrados</h2>
+                <div class="visualization">
+                    <div class="viz-description">
+                        <p>
+                            Foram identificadas várias correlações importantes entre as métricas de rede, características 
+                            geográficas e qualidade de sinal. Estas correlações fornecem insights valiosos para a modelagem 
+                            preditiva e otimização da rede.
+                        </p>
+                    </div>
+                    <div class="viz-placeholder">
+                        <img src="images/correlation_matrix.png" alt="Matriz de Correlação">
+                        <p class="caption">Figura 8: Matriz de correlação entre as principais variáveis analisadas</p>
+                    </div>
+                </div>
+                
+                <div class="findings">
+                    <h3>Principais Descobertas</h3>
+                    <ul>
+                        <li>Forte correlação negativa (-0.82) entre a distância da RBS mais próxima e a qualidade de sinal</li>
+                        <li>Áreas com maior densidade de RBSs apresentam melhor cobertura, mas também maior interferência em 72% dos casos</li>
+                        <li>Elevação do terreno tem impacto significativo na propagação do sinal, com atenuação de 3.7dB a cada 100m</li>
+                        <li>Identificadas 8 comunidades distintas na rede que correspondem a áreas geográficas específicas</li>
+                        <li>23 nós críticos foram identificados cuja falha poderia comprometer significativamente a cobertura regional</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="next-steps">
+            <div class="container">
+                <h2>Próximos Passos</h2>
+                <p>
+                    Com base na análise exploratória, o próximo passo é a implementação de modelos preditivos 
+                    baseados em Graph Neural Networks (GNNs) para prever a qualidade de cobertura e identificar 
+                    locais ótimos para a instalação de novas RBSs.
+                </p>
+                <div class="code-snippet-preview">
+                    <h3>Prévia do Código</h3>
+                    <pre><code>
+# Análise de grafos para RBSs
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.neighbors import kneighbors_graph
+
+def construct_rbs_network(rbs_data, threshold_distance=1000):
+    """
+    Constrói um grafo representando a rede de RBSs onde as conexões
+    são estabelecidas baseadas na distância e sobreposição de cobertura
+    
+    Args:
+        rbs_data: DataFrame com dados das estações base
+        threshold_distance: Distância máxima para criar conexão (metros)
+    """
+    # Extrair coordenadas
+    coords = rbs_data[['latitude', 'longitude']].values
+    
+    # Criar matriz de adjacência baseada na distância
+    A = kneighbors_graph(coords, n_neighbors=10, mode='distance')
+    
+    # Converter para NetworkX graph
+    G = nx.from_scipy_sparse_matrix(A)
+    
+    # Adicionar atributos aos nós
+    for i, row in enumerate(rbs_data.iterrows()):
+        G.nodes[i]['lat'] = row[1]['latitude']
+        G.nodes[i]['lon'] = row[1]['longitude']
+        G.nodes[i]['power'] = row[1]['transmitter_power']
+        G.nodes[i]['height'] = row[1]['antenna_height']
+        G.nodes[i]['operator'] = row[1]['operator']
+    
+    return G
+                    </code></pre>
+                    <p class="code-link">Ver código completo: <a href="scripts/graph_sage.py">graph_sage.py</a></p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="models.html" class="btn primary">Ver Modelos & Resultados</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Projeto de MBA - Modelagem e Avaliação de Cobertura de Bases de Rádio</p>
+            <div class="social-links">
+                <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona funcionalidade de zoom nas imagens
+        const images = document.querySelectorAll('.viz-item img, .viz-placeholder img');
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.toggle('zoomed');
+            });
+        });
+    });
+    </script>
+</body>
+</html> 

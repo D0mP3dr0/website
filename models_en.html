@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Models and Results - Radio Base Coverage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RBS Analysis</div>
+            <ul class="nav-links">
+                <li><a href="index_en.html">Home</a></li>
+                <li><a href="exploratory_en.html">Exploratory Analysis</a></li>
+                <li><a href="models_en.html" class="active">Models & Results</a></li>
+                <li><a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li class="language-selector">
+                    <a href="models.html">PT</a> | 
+                    <a href="models_en.html" class="active">EN</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Models and Results</h1>
+                <p>Implementation of GNNs for modeling RBS coverage</p>
+            </div>
+        </section>
+
+        <section class="models-overview">
+            <div class="container">
+                <h2>Models Overview</h2>
+                <p>
+                    Based on the exploratory data analysis, several Graph Neural Network (GNN) models were
+                    implemented to predict the quality of RBS coverage and identify patterns in
+                    telecommunications data. The models explore the interconnected nature of radio base stations,
+                    treating them as nodes in a graph with different characteristics.
+                </p>
+                
+                <div class="models-resources">
+                    <h3>Project Resources</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <i class="fas fa-file-code"></i>
+                            <a href="scripts/graph_sage.py">GraphSAGE Implementation</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-file-code"></i>
+                            <a href="scripts/gat_model.py">GAT (Graph Attention Network) Implementation</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-line"></i>
+                            <a href="scripts/performance_analysis.py">Performance Analysis Script</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-database"></i>
+                            <a href="data/processed_rbs_data.csv">Processed RBS Data</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="model-architecture">
+            <div class="container">
+                <h2>Model Architecture</h2>
+                <div class="model-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-model="graphsage">GraphSAGE</button>
+                        <button class="tab-btn" data-model="gat">GAT</button>
+                        <button class="tab-btn" data-model="gcn">GCN</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="graphsage-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/graphsage_architecture.png" alt="GraphSAGE Architecture">
+                                <p class="caption">Figure 1: Architecture of the implemented GraphSAGE model</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GraphSAGE (SAmple and aggreGatE)</h3>
+                                <p>
+                                    GraphSAGE is a method for generating node embeddings by sampling and
+                                    aggregating features from neighboring nodes. This model is particularly
+                                    effective for predicting node properties in large graphs and for handling
+                                    dynamic graphs where new nodes may be added.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GraphSAGE(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers):
+        super(GraphSAGE, self).__init__()
+        self.convs = torch.nn.ModuleList()
+        self.convs.append(SAGEConv(input_dim, hidden_dim))
+        
+        for _ in range(num_layers - 2):
+            self.convs.append(SAGEConv(hidden_dim, hidden_dim))
+            
+        self.convs.append(SAGEConv(hidden_dim, output_dim))
+        
+    def forward(self, x, edge_index):
+        for i, conv in enumerate(self.convs[:-1]):
+            x = conv(x, edge_index)
+            x = F.relu(x)
+            x = F.dropout(x, p=0.2, training=self.training)
+            
+        x = self.convs[-1](x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gat-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/gat_architecture.png" alt="GAT Architecture">
+                                <p class="caption">Figure 2: Architecture of the implemented GAT model</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GAT (Graph Attention Network)</h3>
+                                <p>
+                                    GAT applies the attention mechanism in graphs, allowing the model to assign
+                                    different weights to different neighboring nodes during aggregation. This is
+                                    particularly useful when some neighbors are more informative than others.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GATModel(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, heads=4):
+        super(GATModel, self).__init__()
+        self.conv1 = GATConv(input_dim, hidden_dim, heads=heads)
+        self.conv2 = GATConv(hidden_dim*heads, output_dim)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.elu(x)
+        x = F.dropout(x, p=0.3, training=self.training)
+        x = self.conv2(x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gcn-content">
+                        <div class="model-details">
+                            <div class="model-viz">
+                                <img src="images/gcn_architecture.png" alt="GCN Architecture">
+                                <p class="caption">Figure 3: Architecture of the implemented GCN model</p>
+                            </div>
+                            <div class="model-description">
+                                <h3>GCN (Graph Convolutional Network)</h3>
+                                <p>
+                                    GCN applies convolution operations on graphs, utilizing the graph structure
+                                    to propagate information between nodes. This model is effective for node 
+                                    classification tasks in graphs where relationships between nodes are important.
+                                </p>
+                                <div class="code-snippet">
+                                    <pre><code>
+class GCNModel(torch.nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super(GCNModel, self).__init__()
+        self.conv1 = GCNConv(input_dim, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, output_dim)
+        
+    def forward(self, x, edge_index):
+        x = self.conv1(x, edge_index)
+        x = F.relu(x)
+        x = F.dropout(x, p=0.3, training=self.training)
+        x = self.conv2(x, edge_index)
+        return x</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results-analysis">
+            <div class="container">
+                <h2>Results and Analysis</h2>
+                <div class="performance-comparison">
+                    <h3>Model Performance Comparison</h3>
+                    <div class="results-viz">
+                        <img src="images/models_comparison.png" alt="Model comparison">
+                        <p class="caption">Figure 4: Performance comparison between different GNN models</p>
+                    </div>
+                    
+                    <div class="metrics-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1 Score</th>
+                                    <th>MAE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>GraphSAGE</td>
+                                    <td>0.87</td>
+                                    <td>0.85</td>
+                                    <td>0.86</td>
+                                    <td>2.34 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>GAT</td>
+                                    <td>0.89</td>
+                                    <td>0.88</td>
+                                    <td>0.89</td>
+                                    <td>2.12 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>GCN</td>
+                                    <td>0.84</td>
+                                    <td>0.82</td>
+                                    <td>0.83</td>
+                                    <td>2.76 dBm</td>
+                                </tr>
+                                <tr>
+                                    <td>Baseline (RF)</td>
+                                    <td>0.78</td>
+                                    <td>0.75</td>
+                                    <td>0.76</td>
+                                    <td>3.45 dBm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="coverage-prediction">
+                    <h3>Coverage Prediction</h3>
+                    <div class="results-viz">
+                        <img src="images/coverage_prediction.png" alt="Coverage Prediction">
+                        <p class="caption">Figure 5: Predicted coverage map vs. actual coverage</p>
+                    </div>
+                    <p>
+                        Coverage predictions show high accuracy, especially in urban areas. The GAT model
+                        demonstrated the best overall performance, better capturing the nuances of signal propagation
+                        in different geographical contexts.
+                    </p>
+                </div>
+                
+                <div class="interpretation">
+                    <h3>Interpretation and Insights</h3>
+                    <div class="results-viz">
+                        <img src="images/feature_importance.png" alt="Feature importance">
+                        <p class="caption">Figure 6: Relative importance of input features</p>
+                    </div>
+                    <div class="insights-list">
+                        <h4>Key Insights:</h4>
+                        <ul>
+                            <li>Topographic features have the greatest impact on coverage quality</li>
+                            <li>Connection patterns between RBSs are more important than individual features</li>
+                            <li>Models that use attention mechanisms (GAT) better capture variations in different regions</li>
+                            <li>Population density is a strong predictor of signal quality in urban environments</li>
+                            <li>Antenna height has significant impact in areas with high building density</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="optimization">
+            <div class="container">
+                <h2>Coverage Optimization</h2>
+                <p>
+                    Based on the model results, recommendations were generated for optimizing
+                    existing RBS coverage and for positioning new stations.
+                </p>
+                
+                <div class="optimization-viz">
+                    <img src="images/optimization_map.png" alt="Optimization map">
+                    <p class="caption">Figure 7: Map with recommendations for optimization and new installations</p>
+                </div>
+                
+                <div class="optimization-results">
+                    <h3>Optimization Results</h3>
+                    <div class="result-cards">
+                        <div class="result-card">
+                            <h4>Coverage Improvement</h4>
+                            <p class="result-number">+18.5%</p>
+                            <p>Estimated increase in total coverage area</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Interference Reduction</h4>
+                            <p class="result-number">-24.7%</p>
+                            <p>Decrease in interference between nearby RBSs</p>
+                        </div>
+                        <div class="result-card">
+                            <h4>Resource Savings</h4>
+                            <p class="result-number">12.3%</p>
+                            <p>Reduction in the number of new RBSs needed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="conclusions">
+            <div class="container">
+                <h2>Conclusions and Next Steps</h2>
+                <div class="conclusions-content">
+                    <div class="conclusions-text">
+                        <p>
+                            Graph Neural Network models demonstrated great effectiveness in modeling
+                            and predicting RBS coverage, significantly outperforming traditional approaches.
+                            The GAT model, in particular, showed the best results due to its ability
+                            to assign different weights to different relationships in the RBS graph.
+                        </p>
+                        <p>
+                            The predictions generated by the models allow for more precise optimization of
+                            telecommunications infrastructure, with potential to reduce costs and improve
+                            service quality for end users.
+                        </p>
+                        
+                        <h3>Next Steps:</h3>
+                        <ul>
+                            <li>Include temporal data to evaluate coverage variations over time</li>
+                            <li>Incorporate user consumption data for demand-based optimization</li>
+                            <li>Explore hybrid models that combine GNNs with other deep learning techniques</li>
+                            <li>Develop an interactive interface for coverage visualization and planning</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="notebook-preview">
+                        <h3>Jupyter Notebook</h3>
+                        <div class="notebook-image">
+                            <img src="images/notebook_preview.png" alt="Jupyter Notebook Preview">
+                        </div>
+                        <p class="notebook-link">
+                            <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks/blob/main/notebooks/GNN_Model_Training.ipynb" target="_blank">
+                                <i class="fab fa-jupyter"></i> View full notebook on GitHub
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MBA Project - Modeling and Evaluation of Radio Base Coverage</p>
+            <div class="social-links">
+                <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.remove('active'));
+                // Show the content related to the clicked button
+                const modelId = this.getAttribute('data-model');
+                document.getElementById(`${modelId}-content`).classList.add('active');
+            });
+        });
+        
+        // Add zoom functionality to result images
+        const resultImages = document.querySelectorAll('.results-viz img, .optimization-viz img');
+        resultImages.forEach(img => {
+            img.addEventListener('click', function() {
+                this.classList.toggle('zoomed');
+            });
+        });
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modeling and Evaluation of Radio Base Coverage through Graph Neural Networks</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">RBS Analysis</div>
+            <ul class="nav-links">
+                <li><a href="index_en.html" class="active">Home</a></li>
+                <li><a href="exploratory_en.html">Exploratory Analysis</a></li>
+                <li><a href="models_en.html">Models & Results</a></li>
+                <li><a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li class="language-selector">
+                    <a href="index.html">PT</a> | 
+                    <a href="index_en.html" class="active">EN</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Modeling and Evaluation of Radio Base Coverage through Graph Neural Networks</h1>
+                <p class="subtitle">MBA Project in Data Science and Artificial Intelligence</p>
+                <div class="cta-buttons">
+                    <a href="exploratory_en.html" class="btn primary">View Exploratory Analysis</a>
+                    <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" class="btn secondary" target="_blank">View Code <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="overview">
+            <div class="container">
+                <h2>Project Overview</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Graph Analysis</h3>
+                        <p>Modeling RBS networks as graphs and calculating important metrics</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <h3>Coverage Modeling</h3>
+                        <p>Estimation and optimization of coverage areas</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Advanced Visualizations</h3>
+                        <p>Interactive maps and charts for data analysis</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Machine Learning</h3>
+                        <p>Application of GNNs to predict coverage quality</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>About the Project</h2>
+                <p>
+                    This project presents a comprehensive approach for the analysis, modeling, and optimization of radio base station (RBS) networks using advanced graph techniques and neural networks.
+                    Developed as part of an MBA in Data Science and Artificial Intelligence, the project combines traditional network analysis techniques with modern machine learning methods to offer valuable insights into the quality of telecommunications network coverage.
+                </p>
+                <p>
+                    The analysis toolkit includes functionality for data processing, graph analysis, coverage modeling, advanced visualizations, comparative analysis, GPU acceleration, and integration with machine learning techniques.
+                </p>
+                <div class="resources-links">
+                    <h3>Project Resources</h3>
+                    <ul>
+                        <li><a href="data/sample_rbs_data.csv"><i class="fas fa-table"></i> RBS Data Sample</a></li>
+                        <li><a href="scripts/graph_sage.py"><i class="fas fa-code"></i> GraphSAGE Implementation</a></li>
+                        <li><a href="images/network_graph.png"><i class="fas fa-image"></i> Network Graph Visualization</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="methodology">
+            <div class="container">
+                <h2>Methodology</h2>
+                <div class="methodology-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Data Collection and Processing</h3>
+                            <p>Preparation and validation of RBS data from various sources</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Exploratory Analysis</h3>
+                            <p>Visualization and identification of patterns in the data</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Graph Modeling</h3>
+                            <p>Representation of the network as a graph and calculation of metrics</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>GNN Implementation</h3>
+                            <p>Application of graph neural networks for modeling</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Evaluation and Optimization</h3>
+                            <p>Analysis of results and refinement of models</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 MBA Project - Modeling and Evaluation of Radio Base Coverage</p>
+            <div class="social-links">
+                <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add hover effect to cards
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 25px -5px rgba(0,0,0,0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)';
+            });
+        });
+    });
+    </script>
+</body>
+</html> 
