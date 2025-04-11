@@ -19,4 +19,8 @@ node_modules/
 *.log
 
 # Arquivos de cache
-.cache/ 
+.cache/
+
+# Diretórios originais de dados
+rbs_data/
+rbs_project/ 
