@@ -21,6 +21,9 @@ function setupTabs() {
             // Ativar o botão atual e o conteúdo correspondente
             button.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
+            
+            // Efeito sonoro cyberpunk ao mudar de aba
+            playUISound('tab');
         });
     });
 }
@@ -33,6 +36,9 @@ function setupImageZoom() {
         img.addEventListener('click', () => {
             img.classList.toggle('zoomed');
             
+            // Som de interface ao ampliar
+            playUISound('zoom');
+            
             // Adicionar um overlay quando a imagem estiver ampliada
             if (img.classList.contains('zoomed')) {
                 const overlay = document.createElement('div');
@@ -44,12 +50,19 @@ function setupImageZoom() {
                 overlay.style.height = '100%';
                 overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
                 overlay.style.zIndex = '999';
+                
+                // Adicionar efeito de scan na imagem ampliada
+                const scanEffect = document.createElement('div');
+                scanEffect.classList.add('scan-effect');
+                overlay.appendChild(scanEffect);
+                
                 document.body.appendChild(overlay);
                 
                 // Fechar o zoom ao clicar no overlay
                 overlay.addEventListener('click', () => {
                     img.classList.remove('zoomed');
                     overlay.remove();
+                    playUISound('zoom-out');
                 });
             } else {
                 // Remover overlay quando o zoom for desativado
@@ -114,12 +127,504 @@ function initDetailedTabs() {
     });
 }
 
+// Função para criar efeito de chuva de código binário
+function createBinaryRain() {
+    const binaryRain = document.createElement('div');
+    binaryRain.className = 'binary-rain';
+    document.body.appendChild(binaryRain);
+    
+    function createBinaryDrop() {
+        if (document.hidden) return;
+        
+        const drop = document.createElement('div');
+        drop.className = 'binary-drop';
+        // Variação com código binário e hexadecimal para aspecto mais cyberpunk
+        const symbols = ['0', '1', 'A', 'F', '7', 'E', '3', 'D'];
+        drop.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        drop.style.left = `${Math.random() * 100}%`;
+        drop.style.animationDuration = `${5 + Math.random() * 15}s`;
+        drop.style.opacity = `${0.1 + Math.random() * 0.4}`;
+        drop.style.color = Math.random() > 0.8 ? '#00f0ff' : '#ffffff';
+        drop.style.textShadow = Math.random() > 0.9 ? '0 0 5px #ff00f7' : 'none';
+        
+        binaryRain.appendChild(drop);
+        
+        // Remover a gota após a animação
+        setTimeout(() => {
+            drop.remove();
+        }, 20000);
+    }
+    
+    // Criar gotas iniciais
+    for (let i = 0; i < 40; i++) {
+        setTimeout(createBinaryDrop, i * 100);
+    }
+    
+    // Continuar criando gotas em intervalos
+    setInterval(createBinaryDrop, 300);
+}
+
+// Função para criar efeito de scanline
+function createScanlineEffect() {
+    const scanline = document.createElement('div');
+    scanline.className = 'scanline';
+    document.body.appendChild(scanline);
+}
+
+// Função para criar efeito de grid digital
+function createDigitalGrid() {
+    const dataGrid = document.createElement('div');
+    dataGrid.className = 'data-grid';
+    document.body.appendChild(dataGrid);
+}
+
+// Função para adicionar efeitos de hover nos headings
+function setupHeadingEffects() {
+    const headings = document.querySelectorAll('h1, h2, h3');
+    
+    headings.forEach(heading => {
+        heading.addEventListener('mouseenter', () => {
+            // Adicionando efeito de glitch ao passar o mouse
+            heading.style.animation = 'glitch 0.3s cubic-bezier(.25, .46, .45, .94) both';
+            heading.style.animationIterationCount = '1';
+            
+            // Som de interface cyberpunk
+            playUISound('glitch');
+            
+            setTimeout(() => {
+                heading.style.animation = '';
+            }, 300);
+        });
+    });
+}
+
+// Sistema de sons de interface cyberpunk
+function initAudioSystem() {
+    // Criar elementos de áudio
+    const sounds = {
+        'hover': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09UPMQww5qgMpjI4cZuHMqaO1IqaORDCeMzCZSiTPbCb8fT6xRy7/eWGjn+8eXS3/VdM/M5pEQD4SHhoWOlVRqHAMAAC8AAB8AAAgAABEAABAAAG8AAAPzA/PYqVYaUe19ZGNTu9Xl3+V/6vv//q5eULDy+gAALwAAHwAACAAAEQAAEAAAbwAAA/MD89ipVhpR7dDy/n//////83//8sACADAAAAIYhBhIJGBAcAAAAAAAAAAAAAAAAAAAAAAAAAAACQAA',
+        'click': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09UhDDJSHjjSHDi2AXjlNwHGe4iJiTMuB8eJdTBfWbgXN4KpfP95Z50N/r1F7lnqQ/4eqmn93V//vLlWH39QwHCQ0TN1csTh8jWR4AAC8AAB8AAAgAABEAABAAAG8AAAPzA/PZfVmZW7vPLDC1tPtTvLsrn/+7r/XdVysFHF9AAAXgAALwAAHwAACAAAEQAAEAAAbwAAA/MD89l9WZlbu88sIrWb/////////zVVVVVcrA',
+        'tab': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09VUhEzQppcTjcDo0Jh+OdGMajMJ2BwT80YTCbSjg0pF7i6nMT/eWeXH+ssy5M//VTMz/qqZeX/Vb+H+rM0/6YYcOHDX/PfnwoAABvAAAfAAAIAAARAAAQAABvAAAD8wPz2azSytnd3ljFjjsrluX5nNdrv9X9jGjLRVgKAAAcXEoAABvAAAfAAAIAAARAAAQAABvAAAD8wPz2azSytnd3liKNzTf///9JImZarUSAAAAAAAAAAA',
+        'glitch': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09WofDCcWH444TJ4AQtE3AcOLeCnDMtw4nhPGU4+Pu8F2I4/3lnkbX+rfPrl5f9Vav+rmeqz+GHnqsxpTDh81mff38QAAAgAAB8AAAgAABEAABAAAG8AAAPzA/PZtdy46NdT3MVxYzXW93f6u7u/96zdbKx4sAACAAAHwAACAAAEQAAEAAAbwAAA/MD89m13Llo11PcxXFqS7//////2qJJJG2VioAAAAAAAAAA',
+        'zoom': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09YcVIcOHIAOHnzjM3A8GLuOHDzvCZj8ZmPjzvD58L5tNwLpWH+8s8mb/rNMzn/jOXv/yQ/hhuXHbV2G5l/vBAAQAAAHwAACAAAEQAAEAAAbwAAA/MD89o12muVpfaxjDZK1Vdfv9f/+KuzQVTyQAEAAAAfAAAIAAARAAAgAADbwAAD8wPz2jXaa5Wl9rGMjqS///1f//83MzAqnk',
+        'zoom-out': 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tAwAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADwAD///////////////////////////////////////////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJAQQABmgCdwECAT/////////+hNf///////wAAADttdGF0AAAADHZlcmIAAAAAAAAABm10ZGF0AAAAHm1kYXQAAAAAAe0D8wP/2f/Z/e09YcVIcOHIAOHnzjM3A8GLuOHDzvCZj8ZmPjzvD58L5tNwLpWH+8s8mb/rNMzn/jOXv/yQ/hhuXHbV2G5l/vBAAQAAAHwAACAAAEQAAEAAAbwAAA/MD89o12muVpfaxjDZK1Vdfv9f/+KuzQVTyQAEAAAAfAAAIAAARAAAgAADbwAAD8wPz2jXaa5Wl9rGMjqS///1f//83MzAqnk'
+    };
+    
+    const audioElements = {};
+    
+    // Criar elementos de áudio para cada som
+    for (const [key, src] of Object.entries(sounds)) {
+        const audio = new Audio(src);
+        audio.volume = 0.2; // Volume baixo para não incomodar
+        audioElements[key] = audio;
+    }
+    
+    // Armazenar globalmente
+    window.uiSounds = audioElements;
+}
+
+// Função para reproduzir sons de interface
+function playUISound(type) {
+    if (!window.uiSounds) return;
+    
+    const sound = window.uiSounds[type];
+    if (sound) {
+        // Reiniciar o som para permitir reproduções rápidas consecutivas
+        sound.currentTime = 0;
+        sound.play().catch(err => console.log('Erro ao tocar som: ', err));
+    }
+}
+
+// Função para criar efeito de digitação em tempo real
+function typewriterEffect(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            
+            // Som de digitação aleatório
+            if (Math.random() > 0.7) {
+                playUISound('hover');
+            }
+            
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// Função para criar efeitos de falha (glitch) aleatórios nos elementos
+function setupRandomGlitches() {
+    const elements = document.querySelectorAll('.feature-card, .result-card, .tool-card, .analysis-card');
+    
+    function applyRandomGlitch() {
+        if (document.hidden) return;
+        
+        const randomElement = elements[Math.floor(Math.random() * elements.length)];
+        
+        // Não aplicar se já estiver com glitch
+        if (randomElement.classList.contains('glitching')) return;
+        
+        randomElement.classList.add('glitching');
+        
+        // Aplicar efeito visual
+        const originalTransform = randomElement.style.transform;
+        const originalBoxShadow = randomElement.style.boxShadow;
+        
+        randomElement.style.transform = `${originalTransform} translate(${(Math.random() * 4) - 2}px, ${(Math.random() * 4) - 2}px)`;
+        randomElement.style.boxShadow = `0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(255, 0, 247, 0.4)`;
+        
+        // Restaurar após um curto período
+        setTimeout(() => {
+            randomElement.style.transform = originalTransform;
+            randomElement.style.boxShadow = originalBoxShadow;
+            randomElement.classList.remove('glitching');
+        }, 150 + Math.random() * 200);
+    }
+    
+    // Aplicar glitches aleatórios em intervalos
+    setInterval(applyRandomGlitch, 3000);
+}
+
+// Função para adicionar efeito de partículas nos botões
+function setupButtonParticles() {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            // Criar partículas
+            for (let i = 0; i < 10; i++) {
+                createParticle(button);
+            }
+            playUISound('hover');
+        });
+        
+        button.addEventListener('click', () => {
+            playUISound('click');
+        });
+    });
+    
+    function createParticle(element) {
+        const particle = document.createElement('div');
+        const rect = element.getBoundingClientRect();
+        
+        // Posição aleatória ao redor do botão
+        const x = rect.left + rect.width * Math.random();
+        const y = rect.top + rect.height * Math.random();
+        
+        // Estilo da partícula
+        particle.style.position = 'fixed';
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.width = '2px';
+        particle.style.height = '2px';
+        particle.style.backgroundColor = 'rgba(0, 240, 255, 0.7)';
+        particle.style.borderRadius = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+        
+        // Animação
+        particle.animate([
+            { 
+                transform: `translate(0, 0)`,
+                opacity: 1 
+            },
+            { 
+                transform: `translate(${(Math.random() * 100) - 50}px, ${(Math.random() * 100) - 50}px)`,
+                opacity: 0 
+            }
+        ], {
+            duration: 1000,
+            easing: 'cubic-bezier(0.1, 0.8, 0.2, 1)'
+        });
+        
+        document.body.appendChild(particle);
+        
+        // Remover após a animação
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+}
+
+// Adicionar efeito de cursor cyberpunk
+function setupCyberpunkCursor() {
+    const cursor = document.createElement('div');
+    cursor.classList.add('cyberpunk-cursor');
+    document.body.appendChild(cursor);
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+    
+    document.addEventListener('mousedown', () => {
+        cursor.classList.add('active');
+        
+        // Adiciona highlight de clique
+        const clickHighlight = document.createElement('div');
+        clickHighlight.classList.add('click-highlight');
+        clickHighlight.style.left = cursor.style.left;
+        clickHighlight.style.top = cursor.style.top;
+        document.body.appendChild(clickHighlight);
+        
+        // Remove após a animação
+        setTimeout(() => {
+            clickHighlight.remove();
+        }, 600);
+    });
+    
+    document.addEventListener('mouseup', () => {
+        cursor.classList.remove('active');
+    });
+    
+    // Adiciona scanline
+    const scanline = document.createElement('div');
+    scanline.classList.add('scanline');
+    document.body.appendChild(scanline);
+}
+
+// Função para criar efeito de análise de IA
+function createAIAnalysisEffect() {
+    const neuralNetworkBg = document.querySelector('.neural-network-bg');
+    if (!neuralNetworkBg) return;
+    
+    // Criar nós de rede neural
+    for (let i = 0; i < 50; i++) {
+        const node = document.createElement('div');
+        node.className = 'neural-node';
+        node.style.left = `${Math.random() * 100}%`;
+        node.style.top = `${Math.random() * 100}%`;
+        node.style.width = `${4 + Math.random() * 8}px`;
+        node.style.height = node.style.width;
+        node.style.opacity = 0.1 + Math.random() * 0.5;
+        
+        neuralNetworkBg.appendChild(node);
+    }
+    
+    // Criar conexões entre os nós
+    const nodes = neuralNetworkBg.querySelectorAll('.neural-node');
+    
+    for (let i = 0; i < 80; i++) {
+        const connection = document.createElement('div');
+        connection.className = 'neural-connection';
+        
+        // Pegar dois nós aleatórios
+        const nodeA = nodes[Math.floor(Math.random() * nodes.length)];
+        const nodeB = nodes[Math.floor(Math.random() * nodes.length)];
+        
+        // Calcular a posição e ângulo da conexão
+        const rectA = nodeA.getBoundingClientRect();
+        const rectB = nodeB.getBoundingClientRect();
+        
+        const neuralRect = neuralNetworkBg.getBoundingClientRect();
+        
+        const startX = (rectA.left - neuralRect.left) + (rectA.width / 2);
+        const startY = (rectA.top - neuralRect.top) + (rectA.height / 2);
+        const endX = (rectB.left - neuralRect.left) + (rectB.width / 2);
+        const endY = (rectB.top - neuralRect.top) + (rectB.height / 2);
+        
+        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+        
+        connection.style.width = `${length}px`;
+        connection.style.left = `${startX}px`;
+        connection.style.top = `${startY}px`;
+        connection.style.transform = `rotate(${angle}deg)`;
+        connection.style.opacity = 0.1 + Math.random() * 0.3;
+        
+        neuralNetworkBg.appendChild(connection);
+        
+        // Animar a conexão
+        setInterval(() => {
+            const pulseEffect = document.createElement('div');
+            pulseEffect.className = 'data-pulse';
+            pulseEffect.style.left = '0';
+            pulseEffect.style.opacity = '0.8';
+            
+            connection.appendChild(pulseEffect);
+            
+            setTimeout(() => {
+                pulseEffect.style.left = '100%';
+                pulseEffect.style.opacity = '0';
+            }, 50);
+            
+            setTimeout(() => {
+                pulseEffect.remove();
+            }, 1000);
+        }, 2000 + Math.random() * 5000);
+    }
+}
+
+// Função para animar os indicadores de processamento
+function animateProcessors() {
+    const processors = document.querySelectorAll('.data-processor');
+    
+    processors.forEach(processor => {
+        const lights = processor.querySelectorAll('.light');
+        const label = processor.querySelector('.processor-label');
+        
+        // Animar as luzes
+        let activeLight = 0;
+        setInterval(() => {
+            lights.forEach(light => light.classList.remove('active'));
+            lights[activeLight].classList.add('active');
+            activeLight = (activeLight + 1) % lights.length;
+        }, 500);
+        
+        // Animar o texto com efeito de digitação
+        const states = [
+            "System: Online",
+            "Processing: Active",
+            "Neural Net: Training",
+            "Data Analysis: Running"
+        ];
+        
+        let stateIndex = 0;
+        setInterval(() => {
+            if (label) {
+                const nextState = states[stateIndex];
+                typewriterEffect(label, nextState, 20);
+                stateIndex = (stateIndex + 1) % states.length;
+            }
+        }, 5000);
+    });
+}
+
+// Adicionar animação aos pontos de carregamento
+function animateLoadingDots() {
+    const loadingContainers = document.querySelectorAll('.loading-ai');
+    
+    loadingContainers.forEach(container => {
+        const dots = container.querySelectorAll('.dot');
+        let activeDot = 0;
+        
+        setInterval(() => {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[activeDot].classList.add('active');
+            activeDot = (activeDot + 1) % dots.length;
+        }, 300);
+    });
+}
+
+// Função para adicionar efeito de dados nas métricas
+function animateMetrics() {
+    const metrics = document.querySelectorAll('.metric-value');
+    
+    metrics.forEach(metric => {
+        const originalText = metric.textContent;
+        let currentValue = parseFloat(originalText.replace(/[^\d.]/g, ''));
+        const suffix = originalText.replace(/[\d.]/g, '');
+        
+        // Animar ocasionalmente com pequenas flutuações
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                // Pequena variação aleatória
+                const variation = currentValue * 0.03 * (Math.random() > 0.5 ? 1 : -1);
+                const newValue = Math.max(0, currentValue + variation);
+                
+                // Efeito de digitação ao atualizar
+                metric.classList.add('updating');
+                setTimeout(() => {
+                    metric.textContent = newValue.toFixed(1).replace(/\.0$/, '') + suffix;
+                    metric.classList.remove('updating');
+                }, 200);
+                
+                // Resetar para o valor original após algum tempo
+                setTimeout(() => {
+                    metric.textContent = originalText;
+                    currentValue = parseFloat(originalText.replace(/[^\d.]/g, ''));
+                }, 2000);
+            }
+        }, 3000);
+    });
+}
+
+// Função para trocar os estilos de tema dinamicamente
+function setupThemeSwitching() {
+    const themeToggle = document.createElement('button');
+    themeToggle.classList.add('theme-toggle');
+    themeToggle.innerHTML = '<i class="fas fa-adjust"></i>';
+    document.body.appendChild(themeToggle);
+    
+    themeToggle.addEventListener('click', () => {
+        // Adiciona o efeito de flash
+        const flash = document.createElement('div');
+        flash.classList.add('theme-flash');
+        document.body.appendChild(flash);
+        
+        setTimeout(() => {
+            flash.remove();
+        }, 500);
+        
+        // Alterna a classe de tema
+        document.body.classList.toggle('light-theme');
+        
+        // Salva a preferência
+        const isLightTheme = document.body.classList.contains('light-theme');
+        localStorage.setItem('lightTheme', isLightTheme);
+    });
+    
+    // Verifica a preferência salva
+    const savedTheme = localStorage.getItem('lightTheme');
+    if (savedTheme === 'true') {
+        document.body.classList.add('light-theme');
+    }
+}
+
 // Inicializar as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar sistema de áudio
+    initAudioSystem();
+    
     setupTabs();
     setupImageZoom();
     initMapTabs();
     initDetailedTabs();
+    setupHeadingEffects();
+    setupButtonParticles();
+    setupCyberpunkCursor();
+    
+    // Efeitos cyberpunk
+    createBinaryRain();
+    createScanlineEffect();
+    createDigitalGrid();
+    setupRandomGlitches();
+    
+    // Novas funções adicionadas
+    createAIAnalysisEffect();
+    animateProcessors();
+    animateLoadingDots();
+    animateMetrics();
+    setupThemeSwitching();
+    
+    // Efetio de digitação na frase principal do hero
+    const heroSubtitle = document.querySelector('.subtitle');
+    if (heroSubtitle) {
+        const originalText = heroSubtitle.textContent;
+        setTimeout(() => {
+            typewriterEffect(heroSubtitle, originalText, 30);
+        }, 500);
+    }
+    
+    // Adicionar efeito de "IA processando dados" em elementos de dados
+    document.querySelectorAll('.data-section, .stats-container').forEach(section => {
+        const dataProcessor = document.createElement('div');
+        dataProcessor.className = 'data-processor';
+        dataProcessor.innerHTML = `
+            <div class="processor-lights">
+                <div class="light"></div>
+                <div class="light"></div>
+                <div class="light"></div>
+            </div>
+            <div class="processor-label">IA processando dados</div>
+        `;
+        section.appendChild(dataProcessor);
+    });
     
     // Detectar quando novas imagens são carregadas para aplicar zoom
     const observer = new MutationObserver((mutations) => {
@@ -137,11 +642,12 @@ document.addEventListener('DOMContentLoaded', () => {
     featureCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px)';
-            this.style.boxShadow = '0 15px 25px -5px rgba(0,0,0,0.1)';
+            this.style.boxShadow = '0 0 15px rgba(0, 240, 255, 0.7), 0 0 30px rgba(0, 240, 255, 0.4)';
+            playUISound('hover');
         });
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)';
+            this.style.boxShadow = '0 4px 6px rgba(0, 240, 255, 0.15), 0 2px 4px rgba(139, 0, 255, 0.1)';
         });
     });
 });
@@ -161,4 +667,226 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
-}); 
+});
+
+// Cria o background de rede neural
+function createNeuralNetworkBackground() {
+    const container = document.createElement('div');
+    container.classList.add('neural-network-bg');
+    document.body.appendChild(container);
+    
+    // Número de nós depende do tamanho da janela
+    const nodeCount = Math.floor(window.innerWidth * window.innerHeight / 40000);
+    const nodes = [];
+    
+    // Cria os nós
+    for (let i = 0; i < nodeCount; i++) {
+        const node = document.createElement('div');
+        node.classList.add('neural-node');
+        
+        const size = Math.random() * 4 + 2;
+        node.style.width = size + 'px';
+        node.style.height = size + 'px';
+        
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        node.style.left = x + '%';
+        node.style.top = y + '%';
+        
+        node.style.animationDelay = Math.random() * 5 + 's';
+        node.style.opacity = Math.random() * 0.5 + 0.2;
+        
+        container.appendChild(node);
+        nodes.push({node, x, y});
+    }
+    
+    // Cria conexões entre nós próximos
+    for (let i = 0; i < nodes.length; i++) {
+        const nodeA = nodes[i];
+        
+        for (let j = i + 1; j < nodes.length; j++) {
+            const nodeB = nodes[j];
+            const distance = Math.sqrt(Math.pow(nodeB.x - nodeA.x, 2) + Math.pow(nodeB.y - nodeA.y, 2));
+            
+            // Conecta nós apenas se estiverem a uma distância razoável
+            if (distance < 20) {
+                const connection = document.createElement('div');
+                connection.classList.add('neural-connection');
+                
+                // Posiciona a conexão
+                const length = distance;
+                const angle = Math.atan2(nodeB.y - nodeA.y, nodeB.x - nodeA.x) * 180 / Math.PI;
+                
+                connection.style.width = length + '%';
+                connection.style.left = nodeA.x + '%';
+                connection.style.top = nodeA.y + '%';
+                connection.style.transform = `rotate(${angle}deg)`;
+                connection.style.opacity = (1 - distance / 20) * 0.3;
+                
+                container.appendChild(connection);
+                
+                // Adiciona pulsos de dados nas conexões aleatoriamente
+                if (Math.random() < 0.2) {
+                    setInterval(() => {
+                        const dataPulse = document.createElement('div');
+                        dataPulse.classList.add('data-pulse');
+                        
+                        dataPulse.style.left = '0%';
+                        dataPulse.style.opacity = '0.8';
+                        connection.appendChild(dataPulse);
+                        
+                        setTimeout(() => {
+                            dataPulse.style.left = '100%';
+                            dataPulse.style.opacity = '0';
+                        }, 10);
+                        
+                        setTimeout(() => {
+                            dataPulse.remove();
+                        }, 1000);
+                    }, Math.random() * 5000 + 3000);
+                }
+            }
+        }
+    }
+}
+
+// Cria elementos de processador de IA
+function createAIProcessorEffects() {
+    const sections = document.querySelectorAll('section, .container');
+    if (sections.length > 0) {
+        // Adiciona 3 processadores na primeira seção
+        const targetSection = sections[0];
+        const processorContainer = document.createElement('div');
+        processorContainer.style.position = 'absolute';
+        processorContainer.style.top = '20px';
+        processorContainer.style.right = '20px';
+        processorContainer.style.zIndex = '10';
+        
+        // Status de processadores
+        const processorStatuses = [
+            { name: "Analysis Engine", active: true },
+            { name: "Neural Interface", active: false },
+            { name: "GeoData Processor", active: true }
+        ];
+        
+        processorStatuses.forEach((status, index) => {
+            const processor = document.createElement('div');
+            processor.classList.add('data-processor');
+            
+            // Luzes de status
+            const lights = document.createElement('div');
+            lights.classList.add('processor-lights');
+            
+            for (let i = 0; i < 3; i++) {
+                const light = document.createElement('div');
+                light.classList.add('light');
+                if (i === 0 && status.active) {
+                    light.classList.add('active');
+                }
+                lights.appendChild(light);
+            }
+            
+            // Rótulo do processador
+            const label = document.createElement('div');
+            label.classList.add('processor-label');
+            label.textContent = status.name;
+            
+            // Animação de loading
+            const loading = document.createElement('div');
+            loading.classList.add('loading-ai');
+            
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                loading.appendChild(dot);
+            }
+            
+            processor.appendChild(lights);
+            processor.appendChild(label);
+            processor.appendChild(loading);
+            processorContainer.appendChild(processor);
+            
+            // Anima as luzes
+            setInterval(() => {
+                const lightsElems = lights.querySelectorAll('.light');
+                lightsElems.forEach(light => light.classList.remove('active'));
+                
+                const randomLight = Math.floor(Math.random() * lightsElems.length);
+                lightsElems[randomLight].classList.add('active');
+            }, 2000 + index * 500);
+            
+            // Anima os pontos de loading
+            let dotIndex = 0;
+            setInterval(() => {
+                const dots = loading.querySelectorAll('.dot');
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[dotIndex].classList.add('active');
+                dotIndex = (dotIndex + 1) % dots.length;
+            }, 500);
+        });
+        
+        targetSection.style.position = 'relative';
+        targetSection.appendChild(processorContainer);
+    }
+}
+
+// Animação das métricas de IA
+function setupAIMetricsAnimation() {
+    // Adiciona uma seção de métricas em páginas adequadas
+    if (document.querySelector('.hero')) {
+        const hero = document.querySelector('.hero');
+        const container = document.createElement('div');
+        container.classList.add('ai-metrics');
+        
+        const metrics = [
+            { title: "Accuracy", value: "98.7%", icon: "chart-line", desc: "Neural prediction precision" },
+            { title: "Data Points", value: "5.2M", icon: "database", desc: "Geoprocessing samples analyzed" },
+            { title: "Response Time", value: "12ms", icon: "bolt", desc: "Average processing latency" },
+            { title: "Updates", value: "24/7", icon: "sync", desc: "Continuous model training" }
+        ];
+        
+        metrics.forEach(metric => {
+            const card = document.createElement('div');
+            card.classList.add('metric-card');
+            
+            const title = document.createElement('div');
+            title.classList.add('metric-title');
+            title.innerHTML = `<i class="fas fa-${metric.icon}"></i> ${metric.title}`;
+            
+            const value = document.createElement('div');
+            value.classList.add('metric-value');
+            value.textContent = metric.value;
+            
+            const desc = document.createElement('div');
+            desc.classList.add('metric-desc');
+            desc.textContent = metric.desc;
+            
+            card.appendChild(title);
+            card.appendChild(value);
+            card.appendChild(desc);
+            container.appendChild(card);
+            
+            // Animação de atualização de valores
+            setInterval(() => {
+                value.classList.add('updating');
+                
+                setTimeout(() => {
+                    value.classList.remove('updating');
+                }, 500);
+                
+                // Pequena flutuação aleatória nos valores
+                if (metric.title === "Accuracy") {
+                    const base = 98.7;
+                    const fluctuation = (Math.random() * 0.4 - 0.2).toFixed(1);
+                    value.textContent = `${(base + parseFloat(fluctuation)).toFixed(1)}%`;
+                } else if (metric.title === "Response Time") {
+                    const base = 12;
+                    const fluctuation = Math.floor(Math.random() * 5) - 2;
+                    value.textContent = `${Math.max(8, base + fluctuation)}ms`;
+                }
+            }, 3000 + Math.random() * 2000);
+        });
+        
+        hero.appendChild(container);
+    }
+} 
