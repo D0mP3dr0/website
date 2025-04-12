@@ -160,7 +160,7 @@
                         A modelagem da rede como um grafo permitiu calcular métricas como betweenness e closeness centrality, 
                         identificando pontos estratégicos para intervenções urbanas.</p>
                         <div class="result-image">
-                            <img src="images/road_network_analysis.png" alt="Análise de Rede Viária" class="responsive-img">
+                            <img src="images/visualizations/road_network_analysis.png" alt="Análise de Rede Viária" class="responsive-img">
                             <p class="image-caption">Mapa de calor de centralidade da malha viária</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                         padrões de escoamento. A integração da hidrografia com a topografia local revelou 
                         12 áreas críticas que necessitam de atenção especial em caso de fortes chuvas.</p>
                         <div class="result-image">
-                            <img src="images/hydro_analysis.png" alt="Análise Hidrográfica" class="responsive-img">
+                            <img src="images/visualizations/hydro_analysis.png" alt="Análise Hidrográfica" class="responsive-img">
                             <p class="image-caption">Modelo de rede hidrográfica com áreas de risco</p>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         e de conectividade. O modelo treinado consegue prever com eficácia padrões de crescimento 
                         urbano e áreas de potencial expansão.</p>
                         <div class="result-image">
-                            <img src="images/gnn_results.png" alt="Resultados do GNN" class="responsive-img">
+                            <img src="images/visualizations/gnn_results.png" alt="Resultados do GNN" class="responsive-img">
                             <p class="image-caption">Matriz de confusão do modelo GNN para classificação de uso do solo</p>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                         disponibilidade de recursos hídricos. Nossos algoritmos identificaram 5 clusters distintos 
                         de urbanização na cidade.</p>
                         <div class="result-image">
-                            <img src="images/density_map.png" alt="Mapa de Densidade" class="responsive-img">
+                            <img src="images/visualizations/density_map.png" alt="Mapa de Densidade" class="responsive-img">
                             <p class="image-caption">Mapa de densidade urbana com clusters identificados</p>
                         </div>
                     </div>
@@ -253,6 +253,68 @@
             </div>
         </section>
 
+        <section class="interactive-maps">
+            <div class="container">
+                <h2><i class="fas fa-map-marked-alt"></i> Mapas Interativos</h2>
+                <p class="section-description">Explore nossos mapas interativos gerados a partir dos dados geoespaciais de Sorocaba. Estes mapas permitem visualizar diferentes aspectos do território urbano e suas características.</p>
+                
+                <div class="map-tabs">
+                    <div class="tabs-nav">
+                        <button class="tab-button active" data-tab="road-network">Rede Viária</button>
+                        <button class="tab-button" data-tab="hydrography">Hidrografia</button>
+                        <button class="tab-button" data-tab="density">Densidade Urbana</button>
+                    </div>
+                    
+                    <div class="tab-content-container">
+                        <div class="tab-content active" id="road-network-tab">
+                            <div class="map-container">
+                                <iframe src="maps/road_network_interactive.html" frameborder="0" class="interactive-map-frame"></iframe>
+                            </div>
+                            <div class="map-description">
+                                <h3>Análise da Rede Viária</h3>
+                                <p>Este mapa interativo mostra a rede viária de Sorocaba, permitindo a visualização da estrutura urbana e suas conexões. A análise de centralidade identifica as vias mais importantes para a mobilidade urbana.</p>
+                                <ul class="map-features">
+                                    <li><i class="fas fa-check"></i> Identificação de vias principais</li>
+                                    <li><i class="fas fa-check"></i> Análise de conectividade</li>
+                                    <li><i class="fas fa-check"></i> Pontos críticos de mobilidade</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="hydrography-tab">
+                            <div class="map-container">
+                                <iframe src="maps/hydrography_interactive.html" frameborder="0" class="interactive-map-frame"></iframe>
+                            </div>
+                            <div class="map-description">
+                                <h3>Análise Hidrográfica</h3>
+                                <p>A rede hidrográfica de Sorocaba é visualizada neste mapa interativo, destacando os principais cursos d'água e áreas com risco de inundação. A integração com o relevo permite identificar pontos críticos.</p>
+                                <ul class="map-features">
+                                    <li><i class="fas fa-check"></i> Rede hidrográfica completa</li>
+                                    <li><i class="fas fa-check"></i> Áreas de risco de inundação</li>
+                                    <li><i class="fas fa-check"></i> Análise de fluxo hídrico</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="density-tab">
+                            <div class="map-container">
+                                <iframe src="maps/density_heatmap.html" frameborder="0" class="interactive-map-frame"></iframe>
+                            </div>
+                            <div class="map-description">
+                                <h3>Mapa de Densidade Urbana</h3>
+                                <p>Este mapa de calor mostra a densidade de ocupação urbana em Sorocaba, revelando clusters de urbanização e permitindo análises sobre o crescimento da cidade. Identificamos 5 padrões principais de ocupação.</p>
+                                <ul class="map-features">
+                                    <li><i class="fas fa-check"></i> Clusters de urbanização</li>
+                                    <li><i class="fas fa-check"></i> Gradientes de densidade</li>
+                                    <li><i class="fas fa-check"></i> Padrões de ocupação territorial</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="cta">
             <div class="container">
                 <h2>Explore o Projeto em Detalhes</h2>
@@ -287,5 +349,7 @@
         });
     });
     </script>
+
+    <script src="scripts.js"></script>
 </body>
 </html> 

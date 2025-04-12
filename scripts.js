@@ -60,10 +60,38 @@ function setupImageZoom() {
     });
 }
 
+// Função para inicializar as abas nos mapas interativos
+function initMapTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Encontrar o ID da aba alvo
+            const tabId = button.getAttribute('data-tab');
+            
+            // Remover a classe 'active' de todos os botões e conteúdos
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adicionar a classe 'active' ao botão clicado
+            button.classList.add('active');
+            
+            // Ativar o conteúdo correspondente
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+    });
+}
+
 // Inicializar as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     setupTabs();
     setupImageZoom();
+    initMapTabs();
     
     // Detectar quando novas imagens são carregadas para aplicar zoom
     const observer = new MutationObserver((mutations) => {
@@ -75,6 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     observer.observe(document.body, { childList: true, subtree: true });
+    
+    // Inicializar efeitos hover nos feature cards
+    const featureCards = document.querySelectorAll('.feature-card');
+    featureCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 15px 25px -5px rgba(0,0,0,0.1)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)';
+        });
+    });
 });
 
 // Adicionar funcionalidade de rolagem suave aos links internos

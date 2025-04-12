@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a31d6728fa30c5b49ed7b5f2b6375a56 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+    <h3 align="center" style="font-size:16px"><b>Hidrografia de Sorocaba</b></h3>
+    
+    
+            <div class="folium-map" id="map_a31d6728fa30c5b49ed7b5f2b6375a56" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a31d6728fa30c5b49ed7b5f2b6375a56 = L.map(
+                "map_a31d6728fa30c5b49ed7b5f2b6375a56",
+                {
+                    center: [-23.5015, -47.4526],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ae74fd679a4bd80a426a923477f9be33 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ae74fd679a4bd80a426a923477f9be33.addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            var poly_line_9b8197ab02f4cebd00405aa7d19d80d9 = L.polyline(
+                [[-23.4815, -47.4726], [-23.4915, -47.4626], [-23.5015, -47.4526], [-23.5115, -47.4426], [-23.5215, -47.4326]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            poly_line_9b8197ab02f4cebd00405aa7d19d80d9.bindTooltip(
+                `<div>
+                     Rio Sorocaba
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_b438d2e8b7752ad980b9119fa6d6e65f = L.circle(
+                [-23.488845403010988, -47.45876017312435],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            circle_b438d2e8b7752ad980b9119fa6d6e65f.bindTooltip(
+                `<div>
+                     Área de Risco 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_70dee13491b39a4d5167c33831130e15 = L.circle(
+                [-23.499082329976478, -47.471907728149425],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            circle_70dee13491b39a4d5167c33831130e15.bindTooltip(
+                `<div>
+                     Área de Risco 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_89baf45e9b0efcd26bfe5efacd571484 = L.circle(
+                [-23.48157377164503, -47.44318594592078],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            circle_89baf45e9b0efcd26bfe5efacd571484.bindTooltip(
+                `<div>
+                     Área de Risco 3
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_f0c28e8e5517407a551860de011e66ba = L.circle(
+                [-23.48516205328021, -47.46839480048301],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            circle_f0c28e8e5517407a551860de011e66ba.bindTooltip(
+                `<div>
+                     Área de Risco 4
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_7faf782a3a292e86f265e923e34bdfcd = L.circle(
+                [-23.48798161153971, -47.45263575360425],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 300, "stroke": true, "weight": 3}
+            ).addTo(map_a31d6728fa30c5b49ed7b5f2b6375a56);
+        
+    
+            circle_7faf782a3a292e86f265e923e34bdfcd.bindTooltip(
+                `<div>
+                     Área de Risco 5
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
