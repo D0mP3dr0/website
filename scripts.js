@@ -87,11 +87,39 @@ function initMapTabs() {
     });
 }
 
+// Função para inicializar as abas de análises detalhadas
+function initDetailedTabs() {
+    const detailTabButtons = document.querySelectorAll('.detailed-tabs .tab-btn');
+    
+    detailTabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Encontrar o ID da aba alvo
+            const tabId = button.getAttribute('data-tab');
+            
+            // Remover a classe 'active' de todos os botões e conteúdos
+            document.querySelectorAll('.detailed-tabs .tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.detailed-tabs .tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adicionar a classe 'active' ao botão clicado
+            button.classList.add('active');
+            
+            // Ativar o conteúdo correspondente
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+}
+
 // Inicializar as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', () => {
     setupTabs();
     setupImageZoom();
     initMapTabs();
+    initDetailedTabs();
     
     // Detectar quando novas imagens são carregadas para aplicar zoom
     const observer = new MutationObserver((mutations) => {

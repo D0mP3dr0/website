@@ -608,6 +608,324 @@
                 </div>
             </div>
         </section>
+
+        <section class="detailed-analyses">
+            <div class="container">
+                <h2><i class="fas fa-microscope"></i> Detailed Analyses</h2>
+                <p class="section-description">This section presents detailed visual and statistical analyses for each component of our study. Each category includes specific representations that reveal different aspects of Sorocaba's geospatial data.</p>
+                
+                <!-- Tabs for different analysis categories -->
+                <div class="detailed-tabs">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="hydro-detail">Hydrography</button>
+                        <button class="tab-btn" data-tab="roads-detail">Road Network</button>
+                        <button class="tab-btn" data-tab="landuse-detail">Land Use</button>
+                        <button class="tab-btn" data-tab="buildings-detail">Buildings</button>
+                        <button class="tab-btn" data-tab="natural-detail">Natural Areas</button>
+                        <button class="tab-btn" data-tab="census-detail">Census Tracts</button>
+                        <button class="tab-btn" data-tab="inmet-detail">Weather Data</button>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <!-- Detailed Hydrographic Analysis -->
+                        <div class="tab-content active" id="hydro-detail">
+                            <h3 class="detail-title">Detailed Hydrographic Analysis</h3>
+                            <p class="detail-intro">Our hydrographic analysis examined the structure, hierarchy, and characteristics of Sorocaba's water network, revealing drainage patterns and areas of hydrological importance.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/hidrografia/analise_rede_hidrografia.png" alt="Hydrographic Network Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Hydrographic Network Analysis</h4>
+                                        <p>Complete mapping of the hydrographic network showing the drainage structure and watersheds of Sorocaba.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/hidrografia/distribuicao_strahler.png" alt="Strahler Order Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Strahler Order Distribution</h4>
+                                        <p>Analysis of river hierarchy using the Strahler classification, which indicates the complexity and importance of waterways.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/hidrografia/comprimento_por_strahler.png" alt="Length by Strahler Order" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Length by Strahler Order</h4>
+                                        <p>Distribution of the total length of waterways by hierarchical order, revealing the structure of the drainage network.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/hidrografia/analise_sinuosidade.png" alt="Sinuosity Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Sinuosity Analysis</h4>
+                                        <p>Study of waterway sinuosity, an important indicator of fluvial morphology and hydrological behavior.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Road Network Analysis -->
+                        <div class="tab-content" id="roads-detail">
+                            <h3 class="detail-title">Detailed Road Network Analysis</h3>
+                            <p class="detail-intro">Our road network analysis examined the structure, connectivity, and hierarchy of Sorocaba's transportation system, revealing urban mobility patterns.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/roads/mapa_estatico_vias.png" alt="Static Road Network Map" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Static Road Network Map</h4>
+                                        <p>Complete visualization of Sorocaba's road network, classified by types and hierarchy of roads.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/roads/distribuicao_classes_vias.png" alt="Road Class Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Road Class Distribution</h4>
+                                        <p>Statistical analysis of the distribution of different road classes (primary, secondary, residential, etc.) and their representation in the urban network.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Land Use Analysis -->
+                        <div class="tab-content" id="landuse-detail">
+                            <h3 class="detail-title">Detailed Land Use Analysis</h3>
+                            <p class="detail-intro">Our land use analysis examined the spatial distribution of different use categories, fragmentation, and territorial occupation patterns in Sorocaba.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/landuse/mapa_estatico_landuse.png" alt="Static Land Use Map" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Static Land Use Map</h4>
+                                        <p>Complete visualization of the spatial distribution of land use in Sorocaba, classified by categories.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/landuse/distribuicao_landuse.png" alt="Land Use Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Land Use Distribution</h4>
+                                        <p>Statistical analysis of the distribution of different land use categories and their representation in the urban area.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/landuse/distribuicao_area_landuse.png" alt="Area Distribution by Land Use" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Area Distribution by Land Use</h4>
+                                        <p>Analysis of the proportion of area occupied by each land use category, highlighting the dominance of certain uses.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/landuse/analise_fragmentacao_landuse.png" alt="Land Use Fragmentation Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Land Use Fragmentation Analysis</h4>
+                                        <p>Study of fragmentation and dispersion of different land use categories, revealing territorial occupation patterns.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Building Analysis -->
+                        <div class="tab-content" id="buildings-detail">
+                            <h3 class="detail-title">Detailed Building Analysis</h3>
+                            <p class="detail-intro">Our building analysis examined the typology, spatial distribution, and morphology of constructions in Sorocaba, revealing urban occupation patterns.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/buildings/distribuicao_classes_edificios.png" alt="Building Class Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Building Class Distribution</h4>
+                                        <p>Statistical analysis of the distribution of different building typologies (residential, commercial, industrial, etc.) and their representation in the urban fabric.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/buildings/analise_altura_edificios.png" alt="Building Height Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Building Height Analysis</h4>
+                                        <p>Study of the distribution of building heights, revealing verticalization patterns and intensity of urban occupation.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/buildings/analise_morfologia.png" alt="Urban Morphology Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Urban Morphology Analysis</h4>
+                                        <p>Study of morphological patterns of the urban fabric, identifying areas of different typologies (orthogonal, organic, irregular, etc.).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Natural Areas Analysis -->
+                        <div class="tab-content" id="natural-detail">
+                            <h3 class="detail-title">Detailed Natural Areas Analysis</h3>
+                            <p class="detail-intro">Our natural areas analysis examined the distribution, size, shape, and ecological characteristics of natural spaces in Sorocaba.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/mapa_coropletico_area_hectares.png" alt="Choropleth Map of Area in Hectares" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Choropleth Map of Area</h4>
+                                        <p>Visualization of the spatial distribution of natural area sizes, highlighting fragments of greater relevance.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/mapa_coropletico_shape_index.png" alt="Choropleth Map of Shape Index" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Choropleth Map of Shape Index</h4>
+                                        <p>Analysis of the geometric complexity of natural areas, an important indicator for conservation and ecological connectivity studies.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/histograma_area_hectares.png" alt="Histogram of Area in Hectares" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Area Histogram</h4>
+                                        <p>Statistical distribution of natural area sizes, revealing the predominance of small or large fragments.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/histograma_perimeter_m.png" alt="Histogram of Perimeter in Meters" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Perimeter Histogram</h4>
+                                        <p>Statistical distribution of natural area perimeters, an important parameter for edge and vulnerability analysis.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/distribuicao_natural.png" alt="Distribution of Natural Types" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Distribution of Natural Types</h4>
+                                        <p>Analysis of the proportion of different categories of natural areas (forests, fields, wetlands, etc.).</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/natural_areas/distribuicao_ecological_importance.png" alt="Distribution of Ecological Importance" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Distribution of Ecological Importance</h4>
+                                        <p>Analysis of the classification of natural areas according to their importance for biodiversity conservation and ecosystem services.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Census Tracts Analysis -->
+                        <div class="tab-content" id="census-detail">
+                            <h3 class="detail-title">Detailed Census Tracts Analysis</h3>
+                            <p class="detail-intro">Our census tracts analysis examined demographic distribution, socioeconomic characteristics, and territorial occupation patterns in Sorocaba.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/setores_censitarios/mapa_densidade_populacional.png" alt="Population Density Map" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Population Density Map</h4>
+                                        <p>Visualization of the spatial distribution of population density by census tract, revealing areas of higher and lower occupation.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/setores_censitarios/analise_urbano_rural.png" alt="Urban-Rural Analysis" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Urban-Rural Analysis</h4>
+                                        <p>Study of the distribution and characteristics of urban and rural census tracts, revealing urban-rural transition patterns.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/setores_censitarios/analise_areas_setores.png" alt="Analysis of Sector Areas" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Analysis of Sector Areas</h4>
+                                        <p>Statistical distribution of census tract sizes, an important indicator for understanding the homogeneity of analysis units.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Meteorological Data Analysis -->
+                        <div class="tab-content" id="inmet-detail">
+                            <h3 class="detail-title">Detailed Weather Data Analysis</h3>
+                            <p class="detail-intro">Our meteorological data analysis examined climate patterns, parameter distributions, and seasonal variations in Sorocaba, based on INMET data.</p>
+                            
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/temperatura_por_estacao.png" alt="Temperature by Season" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Temperature by Weather Station</h4>
+                                        <p>Analysis of average temperature variation at different weather stations, revealing local microclimates.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/precipitacao_acumulada.png" alt="Accumulated Precipitation" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Accumulated Precipitation</h4>
+                                        <p>Analysis of monthly accumulated precipitation, revealing seasonal patterns and critical periods for water management.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/temperatura_mensal_heatmap.png" alt="Monthly Temperature Heatmap" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Monthly Temperature Heatmap</h4>
+                                        <p>Visualization of temperature variation throughout the months, allowing identification of seasonal patterns and anomalies.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/rosa_dos_ventos_static.png" alt="Static Wind Rose" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Wind Rose</h4>
+                                        <p>Analysis of directional distribution and wind intensity, fundamental for pollutant dispersion studies and urban thermal comfort.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/distribuicao_temperature_c.png" alt="Temperature Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Temperature Distribution</h4>
+                                        <p>Statistical analysis of temperature distribution, revealing frequency bands and climate extremes.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/distribuicao_precipitation_mm.png" alt="Precipitation Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Precipitation Distribution</h4>
+                                        <p>Statistical analysis of precipitation distribution, important for hydrological studies and urban drainage.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/distribuicao_humidity_pct.png" alt="Humidity Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Humidity Distribution</h4>
+                                        <p>Statistical analysis of relative air humidity distribution, an important parameter for environmental comfort studies.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-item">
+                                    <img src="images/geoprocessing/inmet/distribuicao_wind_speed_ms.png" alt="Wind Speed Distribution" class="detail-img">
+                                    <div class="detail-caption">
+                                        <h4>Wind Speed Distribution</h4>
+                                        <p>Statistical analysis of wind speed distribution, revealing natural ventilation patterns in the region.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
