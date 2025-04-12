@@ -160,8 +160,8 @@
                         A modelagem da rede como um grafo permitiu calcular métricas como betweenness e closeness centrality, 
                         identificando pontos estratégicos para intervenções urbanas.</p>
                         <div class="result-image">
-                            <img src="images/visualizations/road_network_analysis.png" alt="Análise de Rede Viária" class="responsive-img">
-                            <p class="image-caption">Mapa de calor de centralidade da malha viária</p>
+                            <img src="images/geoprocessing/roads/mapa_estatico_vias.png" alt="Mapa da Rede Viária de Sorocaba" class="responsive-img">
+                            <p class="image-caption">Mapa da rede viária de Sorocaba com classificação por tipos de vias</p>
                         </div>
                     </div>
                     
@@ -171,8 +171,8 @@
                         padrões de escoamento. A integração da hidrografia com a topografia local revelou 
                         12 áreas críticas que necessitam de atenção especial em caso de fortes chuvas.</p>
                         <div class="result-image">
-                            <img src="images/visualizations/hydro_analysis.png" alt="Análise Hidrográfica" class="responsive-img">
-                            <p class="image-caption">Modelo de rede hidrográfica com áreas de risco</p>
+                            <img src="images/geoprocessing/hidrografia/analise_rede_hidrografia.png" alt="Análise de Rede Hidrográfica" class="responsive-img">
+                            <p class="image-caption">Rede hidrográfica de Sorocaba com análise de densidade</p>
                         </div>
                     </div>
                     
@@ -183,8 +183,8 @@
                         e de conectividade. O modelo treinado consegue prever com eficácia padrões de crescimento 
                         urbano e áreas de potencial expansão.</p>
                         <div class="result-image">
-                            <img src="images/visualizations/gnn_results.png" alt="Resultados do GNN" class="responsive-img">
-                            <p class="image-caption">Matriz de confusão do modelo GNN para classificação de uso do solo</p>
+                            <img src="images/geoprocessing/landuse/analise_fragmentacao_landuse.png" alt="Análise de Fragmentação de Uso do Solo" class="responsive-img">
+                            <p class="image-caption">Análise de fragmentação do uso do solo utilizando técnicas de GNN</p>
                         </div>
                     </div>
                     
@@ -195,8 +195,8 @@
                         disponibilidade de recursos hídricos. Nossos algoritmos identificaram 5 clusters distintos 
                         de urbanização na cidade.</p>
                         <div class="result-image">
-                            <img src="images/visualizations/density_map.png" alt="Mapa de Densidade" class="responsive-img">
-                            <p class="image-caption">Mapa de densidade urbana com clusters identificados</p>
+                            <img src="images/geoprocessing/landuse/distribuicao_area_landuse.png" alt="Distribuição de Área por Uso do Solo" class="responsive-img">
+                            <p class="image-caption">Distribuição de áreas por categoria de uso do solo em Sorocaba</p>
                         </div>
                     </div>
                 </div>
@@ -253,6 +253,118 @@
             </div>
         </section>
 
+        <section class="additional-analyses">
+            <div class="container">
+                <h2><i class="fas fa-chart-bar"></i> Análises Complementares</h2>
+                <p class="section-description">Além das análises principais, nosso projeto explorou outros aspectos dos dados geoespaciais de Sorocaba, contribuindo para uma compreensão mais abrangente do território urbano.</p>
+                
+                <div class="analyses-grid">
+                    <div class="analysis-card">
+                        <h3>Análise de Edificações</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/buildings/distribuicao_classes_edificios.png" alt="Distribuição de Classes de Edificações" class="responsive-img">
+                                <p class="image-caption">Distribuição de classes de edificações</p>
+                            </div>
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/buildings/analise_altura_edificios.png" alt="Análise de Altura de Edificações" class="responsive-img">
+                                <p class="image-caption">Análise de altura das edificações</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>Nossa análise de edificações identificou padrões de verticalização na cidade, classificando construções por altura, tipo e densidade. Esta análise auxiliou na compreensão da distribuição urbana e na identificação de padrões de ocupação do território.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>Áreas Naturais</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/natural_areas/mapa_coropletico_area_ha.png" alt="Mapa Coroplético de Áreas Naturais" class="responsive-img">
+                                <p class="image-caption">Mapa coroplético de áreas naturais (hectares)</p>
+                            </div>
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/natural_areas/histograma_area_ha.png" alt="Histograma de Áreas Naturais" class="responsive-img">
+                                <p class="image-caption">Distribuição de tamanho das áreas naturais</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>O estudo das áreas naturais permitiu identificar a fragmentação de habitats e avaliar a distribuição de áreas verdes pela cidade. Identificamos 78 fragmentos significativos, com tamanhos variando de 0,5 a 452 hectares, fundamentais para a qualidade ambiental urbana.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>Morfologia Urbana</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item full-width">
+                                <img src="images/geoprocessing/buildings/analise_morfologia.png" alt="Análise de Morfologia Urbana" class="responsive-img">
+                                <p class="image-caption">Análise de morfologia urbana com padrões de ocupação</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>A análise morfológica do tecido urbano revelou diferentes padrões de ocupação, desde áreas planejadas com traçado regular até zonas de crescimento orgânico. Esta análise foi fundamental para identificar regiões prioritárias para planejamento urbano e intervenções de infraestrutura.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="additional-analyses">
+            <div class="container">
+                <h2><i class="fas fa-cloud"></i> Análise de Dados Meteorológicos (INMET)</h2>
+                <p class="section-description">Nossa análise incluiu dados meteorológicos do Instituto Nacional de Meteorologia (INMET) para entender padrões climáticos e sua relação com o território urbano de Sorocaba.</p>
+                
+                <div class="analyses-grid">
+                    <div class="analysis-card">
+                        <h3>Temperatura e Precipitação</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/inmet/temperatura_por_estacao.png" alt="Temperatura por Estação" class="responsive-img">
+                                <p class="image-caption">Temperatura média por estação meteorológica</p>
+                            </div>
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/inmet/precipitacao_acumulada.png" alt="Precipitação Acumulada" class="responsive-img">
+                                <p class="image-caption">Precipitação acumulada mensal</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>Analisamos dados de temperatura e precipitação para identificar padrões sazonais e anomalias climáticas. Estes dados são fundamentais para o planejamento urbano, especialmente para o dimensionamento de sistemas de drenagem e prevenção de enchentes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>Padrões de Vento</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item full-width">
+                                <img src="images/geoprocessing/inmet/rosa_dos_ventos_static.png" alt="Rosa dos Ventos" class="responsive-img">
+                                <p class="image-caption">Rosa dos ventos mostrando direção e intensidade predominantes</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>A análise dos padrões de vento revelou direções predominantes e variações sazonais, informações essenciais para o planejamento urbano, dispersão de poluentes e estudos de microclima urbano. Nossa análise identificou corredores de vento naturais que podem ser preservados para melhor ventilação urbana.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3>Distribuição de Parâmetros Meteorológicos</h3>
+                        <div class="analysis-images">
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/inmet/distribuicao_temperature_c.png" alt="Distribuição de Temperatura" class="responsive-img">
+                                <p class="image-caption">Distribuição de temperaturas (°C)</p>
+                            </div>
+                            <div class="analysis-image-item">
+                                <img src="images/geoprocessing/inmet/distribuicao_humidity_pct.png" alt="Distribuição de Umidade" class="responsive-img">
+                                <p class="image-caption">Distribuição de umidade (%)</p>
+                            </div>
+                        </div>
+                        <div class="analysis-description">
+                            <p>Estudamos a distribuição estatística de diversos parâmetros meteorológicos, incluindo temperatura, umidade, pressão atmosférica e velocidade do vento. Esta análise permite identificar padrões climáticos locais e sua variabilidade, contribuindo para modelos preditivos mais precisos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="interactive-maps">
             <div class="container">
                 <h2><i class="fas fa-map-marked-alt"></i> Mapas Interativos</h2>
@@ -263,12 +375,13 @@
                         <button class="tab-button active" data-tab="road-network">Rede Viária</button>
                         <button class="tab-button" data-tab="hydrography">Hidrografia</button>
                         <button class="tab-button" data-tab="density">Densidade Urbana</button>
+                        <button class="tab-button" data-tab="wind-rose">Rosa dos Ventos</button>
                     </div>
                     
                     <div class="tab-content-container">
                         <div class="tab-content active" id="road-network-tab">
                             <div class="map-container">
-                                <iframe src="maps/road_network_interactive.html" frameborder="0" class="interactive-map-frame"></iframe>
+                                <iframe src="images/geoprocessing/roads/mapa_interativo_vias.html" frameborder="0" class="interactive-map-frame"></iframe>
                             </div>
                             <div class="map-description">
                                 <h3>Análise da Rede Viária</h3>
@@ -283,7 +396,7 @@
                         
                         <div class="tab-content" id="hydrography-tab">
                             <div class="map-container">
-                                <iframe src="maps/hydrography_interactive.html" frameborder="0" class="interactive-map-frame"></iframe>
+                                <iframe src="images/geoprocessing/hidrografia/mapa_interativo_hidrografia.html" frameborder="0" class="interactive-map-frame"></iframe>
                             </div>
                             <div class="map-description">
                                 <h3>Análise Hidrográfica</h3>
@@ -298,7 +411,7 @@
                         
                         <div class="tab-content" id="density-tab">
                             <div class="map-container">
-                                <iframe src="maps/density_heatmap.html" frameborder="0" class="interactive-map-frame"></iframe>
+                                <iframe src="images/geoprocessing/landuse/mapa_interativo_landuse.html" frameborder="0" class="interactive-map-frame"></iframe>
                             </div>
                             <div class="map-description">
                                 <h3>Mapa de Densidade Urbana</h3>
@@ -307,6 +420,21 @@
                                     <li><i class="fas fa-check"></i> Clusters de urbanização</li>
                                     <li><i class="fas fa-check"></i> Gradientes de densidade</li>
                                     <li><i class="fas fa-check"></i> Padrões de ocupação territorial</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="wind-rose-tab">
+                            <div class="map-container">
+                                <iframe src="images/geoprocessing/inmet/rosa_dos_ventos.html" frameborder="0" class="interactive-map-frame"></iframe>
+                            </div>
+                            <div class="map-description">
+                                <h3>Rosa dos Ventos Interativa</h3>
+                                <p>Este gráfico interativo mostra a direção e intensidade dos ventos em Sorocaba, revelando padrões climáticos e características de ventilação urbana. Os dados são essenciais para análises de dispersão de poluentes e estudos microclimáticos.</p>
+                                <ul class="map-features">
+                                    <li><i class="fas fa-check"></i> Direção predominante dos ventos</li>
+                                    <li><i class="fas fa-check"></i> Intensidade por direção</li>
+                                    <li><i class="fas fa-check"></i> Variação sazonal de padrões</li>
                                 </ul>
                             </div>
                         </div>
