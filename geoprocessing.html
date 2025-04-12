@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geoprocessamento com GNN - D0mP3dr0</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Geoprocessamento</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="exploratory.html">Análise Exploratória</a></li>
+                <li><a href="models.html">Modelos & Resultados</a></li>
+                <li><a href="geoprocessing.html" class="active">Geoprocessamento</a></li>
+                <li><a href="https://github.com/D0mP3dr0/geoprocessing_gnn" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li class="language-selector">
+                    <a href="geoprocessing.html" class="active">PT</a> | 
+                    <a href="geoprocessing_en.html">EN</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Geoprocessamento com GNN</h1>
+                <p class="subtitle">Análises e visualizações de dados geoespaciais para a cidade de Sorocaba</p>
+                <div class="cta-buttons">
+                    <a href="#features" class="btn primary">Ver Funcionalidades</a>
+                    <a href="https://github.com/D0mP3dr0/geoprocessing_gnn" class="btn secondary" target="_blank">Ver Código <i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="overview">
+            <div class="container">
+                <h2>Visão Geral do Projeto</h2>
+                <p>
+                    Este projeto implementa análises e visualizações de dados geoespaciais para a cidade de Sorocaba, 
+                    com foco em redes viárias, hidrografia, uso do solo, edificações e áreas naturais. O projeto utiliza 
+                    técnicas avançadas de geoprocessamento e análise de redes para extrair insights significativos dos dados.
+                </p>
+                <div class="features" id="features">
+                    <div class="feature-card">
+                        <i class="fas fa-water"></i>
+                        <h3>Hidrografia</h3>
+                        <p>Análise de redes hidrográficas, bacias de drenagem e sinuosidade de cursos d'água</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-route"></i>
+                        <h3>Redes Viárias</h3>
+                        <p>Estudo da rede viária urbana e suas características topológicas</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-building"></i>
+                        <h3>Edificações</h3>
+                        <p>Análise morfológica e de altura de edificações urbanas</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Uso do Solo</h3>
+                        <p>Mapeamento e análise de padrões de uso e ocupação do solo</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="data-sources">
+            <div class="container">
+                <h2>Fontes de Dados</h2>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <i class="fas fa-map"></i>
+                        <h3>Dados Geoespaciais</h3>
+                        <ul>
+                            <li>Redes viárias (OpenStreetMap)</li>
+                            <li>Hidrografia (ANA)</li>
+                            <li>Edificações (OpenStreetMap)</li>
+                            <li>Uso do solo (MapBiomas)</li>
+                            <li>Áreas naturais protegidas</li>
+                        </ul>
+                    </div>
+                    <div class="data-item">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>Dados Meteorológicos</h3>
+                        <ul>
+                            <li>Estações INMET</li>
+                            <li>Temperatura</li>
+                            <li>Precipitação</li>
+                            <li>Umidade</li>
+                            <li>Direção e velocidade do vento</li>
+                        </ul>
+                    </div>
+                    <div class="data-item">
+                        <i class="fas fa-database"></i>
+                        <h3>Outros Dados</h3>
+                        <ul>
+                            <li>Modelo Digital de Elevação (DEM)</li>
+                            <li>Dados de licenciamento</li>
+                            <li>Estações de radiocomunicação (RBS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="visualizations">
+            <div class="container">
+                <h2>Visualizações</h2>
+                <p>O projeto gera diversas visualizações para análise de dados geoespaciais:</p>
+                
+                <div class="viz-gallery">
+                    <div class="viz-category">
+                        <h3><i class="fas fa-water"></i> Hidrografia</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Análise de Rede Hidrográfica</h4>
+                                <img src="images/geoprocessing/hidrografia/analise_rede_hidrografia.png" alt="Análise de Rede Hidrográfica">
+                                <p>Análise topológica da rede de drenagem</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/hidrografia/mapa_interativo_hidrografia.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-globe"></i> Ver Mapa Interativo</a>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Análise de Sinuosidade</h4>
+                                <img src="images/geoprocessing/hidrografia/analise_sinuosidade.png" alt="Análise de Sinuosidade">
+                                <p>Estudo da sinuosidade dos cursos d'água</p>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Classificação de Strahler</h4>
+                                <img src="images/geoprocessing/hidrografia/distribuicao_strahler.png" alt="Distribuição de Strahler">
+                                <p>Hierarquização dos cursos d'água pelo método de Strahler</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-category">
+                        <h3><i class="fas fa-building"></i> Edificações</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Análise Morfológica</h4>
+                                <img src="images/geoprocessing/buildings/analise_morfologia.png" alt="Análise Morfológica">
+                                <p>Estudo da morfologia das edificações urbanas</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/buildings/mapa_interativo_edificios.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-globe"></i> Ver Mapa Interativo</a>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Análise de Altura</h4>
+                                <img src="images/geoprocessing/buildings/analise_altura_edificios.png" alt="Análise de Altura">
+                                <p>Distribuição de alturas das edificações</p>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Classes de Edificações</h4>
+                                <img src="images/geoprocessing/buildings/distribuicao_classes_edificios.png" alt="Classes de Edificações">
+                                <p>Distribuição das classes de edificações</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-category">
+                        <h3><i class="fas fa-layer-group"></i> Uso do Solo</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Fragmentação de Uso do Solo</h4>
+                                <img src="images/geoprocessing/landuse/analise_fragmentacao_landuse.png" alt="Fragmentação de Uso do Solo">
+                                <p>Análise da fragmentação do uso do solo</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/landuse/mapa_interativo_landuse.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-globe"></i> Ver Mapa Interativo</a>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Mapa de Calor</h4>
+                                <img src="images/geoprocessing/landuse/mapa_calor_landuse.png" alt="Mapa de Calor de Uso do Solo">
+                                <p>Densidade espacial das classes de uso do solo</p>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Distribuição de Áreas</h4>
+                                <img src="images/geoprocessing/landuse/distribuicao_area_landuse.png" alt="Distribuição de Áreas">
+                                <p>Análise estatística das áreas por classe de uso</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-category">
+                        <h3><i class="fas fa-cloud-sun"></i> Dados Meteorológicos</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Rosa dos Ventos</h4>
+                                <img src="images/geoprocessing/inmet/rosa_dos_ventos_static.png" alt="Rosa dos Ventos">
+                                <p>Visualização da direção e intensidade dos ventos</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/inmet/rosa_dos_ventos.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-chart-pie"></i> Ver Gráfico Interativo</a>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Temperatura Mensal</h4>
+                                <img src="images/geoprocessing/inmet/temperatura_mensal_heatmap.png" alt="Temperatura Mensal">
+                                <p>Heatmap de temperaturas mensais</p>
+                            </div>
+                            <div class="viz-item">
+                                <h4>Precipitação por Estação</h4>
+                                <img src="images/geoprocessing/inmet/precipitacao_por_estacao.png" alt="Precipitação por Estação">
+                                <p>Análise de precipitação por estação meteorológica</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="viz-category">
+                        <h3><i class="fas fa-road"></i> Redes Viárias</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Análise de Vias</h4>
+                                <img src="images/geoprocessing/roads/distribuicao_classes_vias.png" alt="Distribuição Classes de Vias">
+                                <p>Distribuição das classes de vias urbanas</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/roads/mapa_interativo_vias.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-globe"></i> Ver Mapa Interativo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="viz-category">
+                        <h3><i class="fas fa-broadcast-tower"></i> Estações RBS</h3>
+                        <div class="viz-items">
+                            <div class="viz-item">
+                                <h4>Análise Geoespacial RBS</h4>
+                                <img src="images/geoprocessing/buildings/analise_morfologia.png" alt="Mapa de Estações RBS">
+                                <p>Distribuição espacial de estações RBS</p>
+                                <a href="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/rbs/mapa_plotly_interativo.html" class="btn btn-sm interactive-viz" target="_blank"><i class="fas fa-globe"></i> Ver Mapa Interativo (Plotly)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interactive-visualizations">
+            <div class="container">
+                <h2><i class="fas fa-globe-americas"></i> Visualizações Interativas</h2>
+                <p>Um dos principais diferenciais deste projeto são suas visualizações interativas que permitem uma análise detalhada dos dados geoespaciais:</p>
+                
+                <div class="viz-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="hidrografia"><i class="fas fa-water"></i> Hidrografia</button>
+                        <button class="tab-btn" data-tab="buildings"><i class="fas fa-building"></i> Edificações</button>
+                        <button class="tab-btn" data-tab="landuse"><i class="fas fa-layer-group"></i> Uso do Solo</button>
+                        <button class="tab-btn" data-tab="roads"><i class="fas fa-road"></i> Redes Viárias</button>
+                        <button class="tab-btn" data-tab="rbs"><i class="fas fa-broadcast-tower"></i> Estações RBS</button>
+                        <button class="tab-btn" data-tab="inmet"><i class="fas fa-wind"></i> Rosa dos Ventos</button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <div class="tab-content active" id="hidrografia">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/hidrografia/mapa_interativo_hidrografia.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Mapa Interativo - Hidrografia</h3>
+                                <p>Esta visualização mostra a rede hidrográfica completa da região de Sorocaba, permitindo análise de conectividade, ordens de Strahler e outros atributos hidrológicos importantes.</p>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="buildings">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/buildings/mapa_interativo_edificios.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Mapa Interativo - Edificações</h3>
+                                <p>Visualização das edificações urbanas com classificação por tipo e altura, permitindo análise da distribuição espacial e morfologia urbana.</p>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="landuse">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/landuse/mapa_interativo_landuse.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Mapa Interativo - Uso do Solo</h3>
+                                <p>Mapa detalhado do uso e ocupação do solo, permitindo análise de padrões espaciais e fragmentação de classes de uso do solo.</p>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="roads">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/roads/mapa_interativo_vias.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Mapa Interativo - Rede Viária</h3>
+                                <p>Visualização interativa da rede viária urbana, com classificação por tipo de via e análise de conectividade da malha urbana.</p>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="rbs">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/rbs/mapa_plotly_interativo.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Mapa Interativo - Estações RBS</h3>
+                                <p>Visualização da distribuição espacial de estações de rádio base (RBS), permitindo análise de cobertura e densidade de estações.</p>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="inmet">
+                            <div class="iframe-container">
+                                <iframe src="https://raw.githubusercontent.com/D0mP3dr0/geoprocessing_gnn/main/outputs/visualizations/inmet/rosa_dos_ventos.html" frameborder="0" width="100%" height="500px"></iframe>
+                            </div>
+                            <div class="tab-desc">
+                                <h3>Rosa dos Ventos Interativa</h3>
+                                <p>Visualização interativa da direção e intensidade dos ventos, baseada em dados meteorológicos das estações INMET.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="viz-features">
+                        <h3>Recursos Interativos</h3>
+                        <ul>
+                            <li><i class="fas fa-search-plus"></i> <strong>Zoom e Pan</strong>: Amplie e navegue pelos mapas interativamente</li>
+                            <li><i class="fas fa-layer-group"></i> <strong>Seleção de Camadas</strong>: Ative/desative diferentes camadas de informação</li>
+                            <li><i class="fas fa-info-circle"></i> <strong>Popups Informativos</strong>: Clique em elementos para ver detalhes</li>
+                            <li><i class="fas fa-filter"></i> <strong>Filtros</strong>: Em alguns mapas, filtre por atributos específicos</li>
+                            <li><i class="fas fa-expand"></i> <strong>Tela Cheia</strong>: Expanda para visualização em tela cheia</li>
+                        </ul>
+                        <p>Todas estas visualizações foram criadas usando bibliotecas Python como <strong>Folium</strong> e <strong>Plotly</strong>, que convertem dados geoespaciais em mapas web interativos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="structure">
+            <div class="container">
+                <h2>Estrutura do Projeto</h2>
+                <div class="code-block">
+                    <pre>
+geoprocessing_gnn/
+├── data/
+│   ├── interim/        # Dados intermediários
+│   ├── processed/      # Dados processados
+│   └── raw/            # Dados brutos
+├── src/
+│   ├── preprocessing/  # Scripts de pré-processamento
+│   │   ├── buildings.py
+│   │   ├── hidrografia.py
+│   │   ├── inmet.py
+│   │   ├── land_use.py
+│   │   ├── nature.py
+│   │   └── roads.py
+│   ├── visualization/  # Scripts de visualização
+│   ├── analysis/       # Scripts de análise
+│   ├── graph/          # Implementações de GNN
+│   └── enriched_data/  # Enriquecimento de dados
+├── outputs/
+│   ├── figures/        # Figuras e gráficos
+│   ├── models/         # Modelos treinados
+│   ├── reports/        # Relatórios gerados
+│   └── visualizations/ # Visualizações por categoria
+│       ├── buildings/
+│       ├── hidrografia/
+│       ├── inmet/
+│       ├── landuse/
+│       ├── natural_areas/
+│       ├── rbs/
+│       └── roads/
+└── analysis_reports/   # Relatórios de análise de qualidade</pre>
+                </div>
+
+                <div class="workflow">
+                    <h3>Fluxo de Trabalho</h3>
+                    <img src="images/geoprocessing/workflow_diagram.png" alt="Diagrama de Fluxo de Trabalho" class="workflow-img">
+                    <p>O fluxo de trabalho implementado no projeto segue as seguintes etapas:</p>
+                    <ol class="workflow-steps">
+                        <li><strong>Aquisição de Dados:</strong> Coleta de dados de diversas fontes geoespaciais</li>
+                        <li><strong>Pré-processamento:</strong> Limpeza, validação e padronização</li>
+                        <li><strong>Análise Exploratória:</strong> Estatísticas e visualizações básicas</li>
+                        <li><strong>Análise Espacial:</strong> Operações geoespaciais avançadas</li>
+                        <li><strong>Modelagem de Redes:</strong> Construção e análise de grafos espaciais</li>
+                        <li><strong>Visualização:</strong> Mapas interativos e estáticos</li>
+                        <li><strong>Geração de Relatórios:</strong> Documentação dos resultados</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="methodologies">
+            <div class="container">
+                <h2>Metodologias e Técnicas</h2>
+                
+                <div class="methods-list">
+                    <div class="method-item">
+                        <h3><i class="fas fa-clipboard-check"></i> Análise de Qualidade de Dados</h3>
+                        <p>Técnicas robustas para verificação da integridade, completude e precisão dos dados geoespaciais:</p>
+                        <ul>
+                            <li>Validação topológica de geometrias</li>
+                            <li>Detecção de valores ausentes e outliers</li>
+                            <li>Verificação de consistência de atributos</li>
+                            <li>Relatórios automatizados de qualidade</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-item">
+                        <h3><i class="fas fa-project-diagram"></i> Análise de Redes</h3>
+                        <p>Modelagem e análise de redes complexas usando grafos:</p>
+                        <ul>
+                            <li>Construção de grafos a partir de dados lineares</li>
+                            <li>Cálculo de métricas topológicas (centralidade, betweenness)</li>
+                            <li>Detecção de comunidades</li>
+                            <li>Análise de conectividade</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-item">
+                        <h3><i class="fas fa-brain"></i> Aprendizado de Máquina Geoespacial</h3>
+                        <p>Aplicação de técnicas de aprendizado de máquina para dados geoespaciais:</p>
+                        <ul>
+                            <li>Redes Neurais de Grafos (GNN)</li>
+                            <li>Clusterização espacial</li>
+                            <li>Detecção de padrões</li>
+                            <li>Previsão de atributos espaciais</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="method-item">
+                        <h3><i class="fas fa-chart-area"></i> Visualização Avançada</h3>
+                        <p>Técnicas modernas de visualização geoespacial:</p>
+                        <ul>
+                            <li>Mapas interativos com Folium</li>
+                            <li>Mapas de calor e densidade</li>
+                            <li>Visualizações 3D</li>
+                            <li>Gráficos estatísticos interativos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="technologies">
+            <div class="container">
+                <h2>Tecnologias Utilizadas</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <i class="fab fa-python"></i>
+                        <h3>Python</h3>
+                        <p>Linguagem principal do projeto</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-database"></i>
+                        <h3>GeoPandas</h3>
+                        <p>Manipulação de dados geoespaciais</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>NetworkX</h3>
+                        <p>Análise de redes e grafos</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-map"></i>
+                        <h3>Folium</h3>
+                        <p>Visualização interativa</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Matplotlib</h3>
+                        <p>Visualização estatística</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Seaborn</h3>
+                        <p>Visualização estatística avançada</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Rasterio</h3>
+                        <p>Processamento de dados raster</p>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <i class="fas fa-vector-square"></i>
+                        <h3>Shapely</h3>
+                        <p>Manipulação de geometrias</p>
+                    </div>
+                </div>
+                
+                <div class="requirements">
+                    <h3>Requisitos</h3>
+                    <div class="code-block">
+                        <pre>
+geopandas>=0.13.2
+pandas>=2.0.3
+numpy>=1.24.3
+matplotlib>=3.7.1
+seaborn>=0.12.2
+folium>=0.14.0
+networkx>=3.1
+shapely>=2.0.1
+rasterio>=1.3.8
+fiona>=1.9.4
+pyproj>=3.6.0
+contextily>=1.3.0
+scikit-learn>=1.3.0
+tqdm>=4.65.0
+jupyter>=1.0.0
+notebook>=7.0.3</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="usage">
+            <div class="container">
+                <h2>Uso do Projeto</h2>
+                
+                <div class="setup-instructions">
+                    <h3>Configuração do Ambiente</h3>
+                    <div class="code-block">
+                        <pre>
+# Clone o repositório:
+git clone https://github.com/D0mP3dr0/geoprocessing_gnn.git
+cd geoprocessing_gnn
+
+# Crie um ambiente virtual:
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+# Instale as dependências:
+pip install -r requirements.txt</pre>
+                    </div>
+                </div>
+                
+                <div class="execution-instructions">
+                    <h3>Execução dos Módulos</h3>
+                    <div class="code-block">
+                        <pre>
+# Executar o fluxo de trabalho completo:
+python run_workflow.py
+
+# Executar análise de dados:
+python data_analysis.py
+
+# Exemplos específicos de visualização de dados:
+python src/visualization/visualize_roads.py
+python src/visualization/visualize_hidrografia.py
+python src/visualization/visualize_buildings.py
+python src/visualization/visualize_land_use.py
+python src/visualization/visualize_inmet.py
+python src/visualization/visualize_nature.py
+
+# Exemplos de processamento de dados:
+python src/preprocessing/roads.py
+python src/preprocessing/hidrografia.py
+python src/preprocessing/buildings.py
+python src/preprocessing/inmet.py
+python src/preprocessing/land_use.py
+python src/preprocessing/nature.py</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023-2024 Geoprocessamento com GNN - Pedro Domingos</p>
+            <div class="social-links">
+                <a href="https://github.com/D0mP3dr0/geoprocessing_gnn" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Adiciona efeito de hover nos cards
+        const featureCards = document.querySelectorAll('.feature-card, .tech-card');
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 25px -5px rgba(0,0,0,0.1)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)';
+            });
+        });
+    });
+    </script>
+</body>
+</html> 
