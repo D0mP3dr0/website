@@ -1993,4 +1993,95 @@ tbody tr:hover {
     .map-features {
         grid-template-columns: 1fr;
     }
+}
+
+/* Estilos para os mapas interativos */
+.interactive-maps {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+/* Estilos para a seção de análises adicionais */
+.additional-analyses {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.analyses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.analysis-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.analysis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.analysis-card h3 {
+    padding: 20px;
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #f0f2f5;
+}
+
+.analysis-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 15px;
+}
+
+.analysis-image-item {
+    position: relative;
+}
+
+.analysis-image-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.analysis-image-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    transition: opacity 0.3s ease;
+}
+
+.analysis-image-item:hover img {
+    opacity: 0.9;
+}
+
+.image-caption {
+    font-size: 0.85rem;
+    color: #495057;
+    margin-top: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+.analysis-description {
+    padding: 15px 20px 20px;
+}
+
+.analysis-description p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* Estilos para o menu de abas */
+.tab-container {
+    /* ... existing code ... */
 } 
