@@ -1,40 +1,115 @@
-# Modelagem e Avaliação de Cobertura de Bases de Rádio através de GNNs
+# Geoprocessamento com GNN
 
-Este repositório contém o site do projeto de MBA em Ciência de Dados e Inteligência Artificial focado na modelagem e avaliação de cobertura de bases de rádio utilizando Redes Neurais de Grafos (GNNs).
+Este projeto implementa análises e visualizações de dados geoespaciais para a cidade de Sorocaba, com foco em redes viárias e hidrografia. O projeto utiliza técnicas avançadas de geoprocessamento e análise de redes para extrair insights significativos dos dados.
 
-## Sobre o Projeto
+## Estrutura do Projeto
 
-O projeto apresenta uma abordagem abrangente para a análise, modelagem e otimização de redes de estações base de rádio (RBS) utilizando técnicas avançadas de grafos e redes neurais. Desenvolvido como parte do MBA, o projeto combina técnicas tradicionais de análise de rede com métodos modernos de aprendizado de máquina para oferecer insights valiosos sobre a qualidade da cobertura das redes de telecomunicações.
+```
+geoprocessing/
+├── data/
+│   ├── raw/           # Dados brutos
+│   └── processed/     # Dados processados
+├── src/
+│   ├── preprocessing/ # Scripts de pré-processamento
+│   └── visualization/ # Scripts de visualização
+└── outputs/          # Visualizações e resultados
+```
 
-## Conteúdo do Site
+## Funcionalidades
 
-- **Página Inicial**: Visão geral do projeto e suas funcionalidades
-- **Análise Exploratória**: Visualizações e insights obtidos da análise de dados de RBS
-- **Modelos & Resultados**: Detalhes sobre os modelos GNN implementados e seus resultados
+### Pré-processamento
 
-## Tecnologias Utilizadas
+* Limpeza e validação de dados geoespaciais
+* Padronização de sistemas de coordenadas
+* Análise de qualidade dos dados
+* Correção de geometrias
 
-- HTML5, CSS3 e JavaScript para o frontend
-- Python com NetworkX e PyTorch para análise de grafos e implementação de GNNs
-- Visualizações criadas com Matplotlib e outras bibliotecas de visualização Python
+### Visualizações
 
-## Acesso ao Site
+* Mapas interativos com Folium
+* Análise de rede viária
+* Análise de conectividade
+* Mapas de densidade
+* Análises estatísticas
 
-O site está disponível em: [https://username.github.io/radio-base-coverage-gnn](https://username.github.io/radio-base-coverage-gnn)
+## Requisitos
 
-## Como Executar Localmente
+* Python 3.8+
+* GeoPandas
+* NetworkX
+* Folium
+* Matplotlib
+* Seaborn
+* Contextily
 
-1. Clone o repositório
-2. Abra o arquivo `index.html` em seu navegador
+## Instalação
 
-## Contribuições
+1. Clone o repositório:
+```
+git clone https://github.com/D0mP3dr0/geoprocessing_gnn.git
+cd geoprocessing_gnn
+```
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+2. Crie um ambiente virtual:
+```
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+```
+
+3. Instale as dependências:
+```
+pip install -r requirements.txt
+```
+
+## Uso
+
+### Processamento de Dados
+
+1. Processamento da rede viária:
+```
+python src/preprocessing/roads.py
+```
+
+2. Processamento da hidrografia:
+```
+python src/preprocessing/hidrografia.py
+```
+
+### Visualizações
+
+1. Visualizações da rede viária:
+```
+python src/visualization/visualize_roads.py
+```
+
+2. Visualizações da hidrografia:
+```
+python src/visualization/visualize_hidrografia.py
+```
+
+## Resultados
+
+Os resultados incluem:
+
+* Mapas interativos da rede viária e hidrografia
+* Análises de conectividade
+* Estatísticas da rede
+* Mapas de densidade
+* Relatórios de qualidade dos dados
+
+## Contribuição
+
+1. Faça um Fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para mais detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
----
+## Contato
 
-© 2023 - Projeto de MBA - Todos os direitos reservados 
+Pedro Domingos - @D0mP3dr0 
