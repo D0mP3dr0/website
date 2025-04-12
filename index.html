@@ -15,8 +15,7 @@
                 <li><a href="index.html" class="active">Início</a></li>
                 <li><a href="exploratory.html">Análise Exploratória</a></li>
                 <li><a href="models.html">Modelos & Resultados</a></li>
-                <li><a href="geoprocessing.html">Geoprocessamento</a></li>
-                <li><a href="https://github.com/D0mP3dr0" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
+                <li><a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
                 <li class="language-selector">
                     <a href="index.html" class="active">PT</a> | 
                     <a href="index_en.html">EN</a>
@@ -32,7 +31,7 @@
                 <p class="subtitle">Projeto de MBA em Ciência de Dados e Inteligência Artificial</p>
                 <div class="cta-buttons">
                     <a href="exploratory.html" class="btn primary">Ver Análise Exploratória</a>
-                    <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" class="btn secondary" target="_blank">Ver Código <i class="fab fa-github"></i></a>
+                    <a href="models.html" class="btn secondary">Ver Modelos e Resultados</a>
                 </div>
             </div>
         </section>
@@ -40,48 +39,33 @@
         <section class="overview">
             <div class="container">
                 <h2>Visão Geral do Projeto</h2>
+                <div class="project-description">
+                    <p>Este projeto de pesquisa desenvolve uma abordagem inovadora para otimização de redes de telefonia móvel, 
+                    utilizando Redes Neurais de Grafos (GNNs) para modelar e avaliar a cobertura de Estações de Rádio Base (RBSs). 
+                    A metodologia combina técnicas avançadas de análise de grafos com aprendizado profundo para prever a qualidade 
+                    de cobertura e identificar áreas para otimização da infraestrutura de rede.</p>
+                </div>
                 <div class="features">
                     <div class="feature-card">
                         <i class="fas fa-network-wired"></i>
                         <h3>Análise de Grafos</h3>
-                        <p>Modelagem de redes RBS como grafos e cálculo de métricas importantes</p>
+                        <p>Modelagem de redes RBS como grafos, identificação de comunidades e cálculo de métricas de centralidade</p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-broadcast-tower"></i>
                         <h3>Modelagem de Cobertura</h3>
-                        <p>Estimativa e otimização de áreas de cobertura</p>
+                        <p>Estimativa precisa de áreas de cobertura baseada em dados reais e modelos de propagação</p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-chart-line"></i>
                         <h3>Visualizações Avançadas</h3>
-                        <p>Mapas interativos e gráficos para análise de dados</p>
+                        <p>Mapas interativos e gráficos de análise para interpretação dos resultados obtidos</p>
                     </div>
                     <div class="feature-card">
                         <i class="fas fa-brain"></i>
-                        <h3>Machine Learning</h3>
-                        <p>Aplicação de GNNs para prever qualidade de cobertura</p>
+                        <h3>Modelos GNN</h3>
+                        <p>Implementação de GraphSAGE, GCN e GAT para predição de qualidade de cobertura</p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about">
-            <div class="container">
-                <h2>Sobre o Projeto</h2>
-                <p>
-                    Este projeto apresenta uma abordagem abrangente para a análise, modelagem e otimização de redes de estações base de rádio (RBS) utilizando técnicas avançadas de grafos e redes neurais. 
-                    Desenvolvido como parte do MBA em Ciência de Dados e Inteligência Artificial, o projeto combina técnicas tradicionais de análise de rede com métodos modernos de aprendizado de máquina para oferecer insights valiosos sobre a qualidade da cobertura das redes de telecomunicações.
-                </p>
-                <p>
-                    O toolkit de análise inclui funcionalidades para processamento de dados, análise de grafos, modelagem de cobertura, visualizações avançadas, análise comparativa, aceleração GPU e integração com técnicas de aprendizado de máquina.
-                </p>
-                <div class="resources-links">
-                    <h3>Recursos do Projeto</h3>
-                    <ul>
-                        <li><a href="data/sample_rbs_data.csv"><i class="fas fa-table"></i> Amostra de Dados RBS</a></li>
-                        <li><a href="scripts/graph_sage.py"><i class="fas fa-code"></i> Implementação GraphSAGE</a></li>
-                        <li><a href="images/network_graph.png"><i class="fas fa-image"></i> Visualização do Grafo da Rede</a></li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -94,52 +78,84 @@
                         <div class="step-number">1</div>
                         <div class="step-content">
                             <h3>Coleta e Processamento de Dados</h3>
-                            <p>Preparação e validação de dados de RBS de várias fontes</p>
+                            <p>Obtenção de dados de RBSs, validação e pré-processamento para análise</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">2</div>
                         <div class="step-content">
                             <h3>Análise Exploratória</h3>
-                            <p>Visualização e identificação de padrões nos dados</p>
+                            <p>Visualização geoespacial e análise estatística dos dados de cobertura</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
                         <div class="step-content">
                             <h3>Modelagem de Grafos</h3>
-                            <p>Representação da rede como grafo e cálculo de métricas</p>
+                            <p>Representação da rede como grafo com atributos de nós e arestas</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">4</div>
                         <div class="step-content">
                             <h3>Implementação de GNNs</h3>
-                            <p>Aplicação de redes neurais de grafos para a modelagem</p>
+                            <p>Desenvolvimento e treinamento de modelos baseados em redes neurais de grafos</p>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-number">5</div>
                         <div class="step-content">
                             <h3>Avaliação e Otimização</h3>
-                            <p>Análise de resultados e refinamento dos modelos</p>
+                            <p>Avaliação dos modelos e recomendações para otimização da rede</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="projects">
+        <section class="key-results">
             <div class="container">
-                <h2>Outros Projetos</h2>
-                <div class="features">
-                    <div class="feature-card">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Geoprocessamento com GNN</h3>
-                        <p>Análise de dados geoespaciais da cidade de Sorocaba</p>
-                        <a href="geoprocessing.html" class="btn secondary">Ver Projeto</a>
+                <h2>Principais Resultados</h2>
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="result-content">
+                            <h3>Previsão de Cobertura</h3>
+                            <p>Modelo GAT alcançou 89.7% de acurácia na previsão de qualidade de cobertura</p>
+                        </div>
                     </div>
-                    <!-- Mais projetos podem ser adicionados aqui no futuro -->
+                    <div class="result-card">
+                        <div class="result-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="result-content">
+                            <h3>Otimização de Rede</h3>
+                            <p>Identificação de 32 locais prioritários para instalação de novas RBSs</p>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="result-content">
+                            <h3>Análise de Comunidades</h3>
+                            <p>Detecção de 18 comunidades de RBSs com características distintas</p>
+                        </div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="result-content">
+                            <h3>Comparativo de Modelos</h3>
+                            <p>GAT superou GCN e GraphSAGE em 12.3% nas métricas de desempenho</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Explore o Projeto em Detalhes</h2>
+                <div class="cta-buttons">
+                    <a href="exploratory.html" class="btn primary">Análise Exploratória</a>
+                    <a href="models.html" class="btn primary">Modelos & Resultados</a>
+                    <a href="https://github.com/D0mP3dr0/Modeling-and-Evaluation-of-Radio-Base-Coverage-through-Graph-Neural-Networks" class="btn secondary" target="_blank">Código Fonte <i class="fab fa-github"></i></a>
                 </div>
             </div>
         </section>
@@ -147,10 +163,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023-2024 Projetos de Pedro Domingos</p>
-            <div class="social-links">
-                <a href="https://github.com/D0mP3dr0" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
+            <p>&copy; 2023-2024 MBA em Ciência de Dados e Inteligência Artificial</p>
         </div>
     </footer>
 
