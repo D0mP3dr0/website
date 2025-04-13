@@ -2281,7 +2281,7 @@ nav {
     }
 }
 
-/* Mad Max Dust Effect */
+/* Mad Max Dust Effect - Versão 2 com maior visibilidade */
 .mad-max-dust-container {
     position: fixed;
     top: 0;
@@ -2289,19 +2289,19 @@ nav {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 5;
+    z-index: 15; /* Aumentei o z-index */
     overflow: hidden;
 }
 
 .dust-particle {
     position: absolute;
     border-radius: 50%;
-    z-index: 5;
-    box-shadow: 0 0 10px rgba(210, 180, 140, 0.3);
+    z-index: 15;
+    box-shadow: 0 0 15px rgba(210, 180, 140, 0.5); /* Sombra mais visível */
     pointer-events: none;
 }
 
-/* Adiciona um filtro vermelho/âmbar para toda a página para dar o tom de Mad Max */
+/* Aumenta o filtro âmbar para todo o site */
 body::after {
     content: '';
     position: fixed;
@@ -2309,50 +2309,25 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(153, 101, 21, 0.05), rgba(210, 180, 140, 0.05));
+    background: linear-gradient(to right, rgba(153, 101, 21, 0.1), rgba(210, 180, 140, 0.1)); /* Mais visível */
     pointer-events: none;
     z-index: 2;
 }
 
-/* Ajusta a paleta de cores para ser mais "terra devastada" */
-:root {
-    --wasteland-amber: #99651580;
-    --wasteland-orange: #cc6e2090;
-    --wasteland-red: #8b2e2e70;
-    --wasteland-dust: #d2b48c40;
-    --wasteland-rust: #8e442680;
-}
-
-/* Efeito de poeira ocasional em rajadas */
-@keyframes dustStorm {
-    0% {
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.7;
-    }
-    80% {
-        opacity: 0.7;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-/* Adiciona um efeito de luz solar forte na parte superior da tela */
+/* Efeito mais intenso de luz solar */
 body::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 30%;
-    background: radial-gradient(ellipse at top, rgba(255, 140, 50, 0.1) 0%, transparent 70%);
+    height: 40%; /* Maior área */
+    background: radial-gradient(ellipse at top, rgba(255, 140, 50, 0.15) 0%, transparent 70%); /* Mais intenso */
     pointer-events: none;
     z-index: 1;
 }
 
-/* Efeito de grão de filme para dar aquele look desgastado */
+/* Grão de filme mais visível */
 .grain-overlay {
     position: fixed;
     top: 0;
@@ -2360,23 +2335,25 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==');
-    opacity: 0.07;
+    opacity: 0.15; /* Aumentei a opacidade */
     pointer-events: none;
-    z-index: 3;
+    z-index: 5;
 }
 
-/* Personaliza as cores dos elementos para combinar com o tema Mad Max */
+/* Cores mais intensas para botões em tema Mad Max */
 .btn.primary {
     background: linear-gradient(45deg, var(--wasteland-rust), var(--primary-color));
     border-color: var(--wasteland-orange);
+    box-shadow: 0 0 15px var(--wasteland-orange); /* Sombra mais visível */
 }
 
 .btn.secondary {
     background: linear-gradient(45deg, var(--wasteland-red), var(--secondary-color));
     border-color: var(--wasteland-amber);
+    box-shadow: 0 0 15px var(--wasteland-amber); /* Sombra mais visível */
 }
 
-/* Efeito de rajada forte de poeira - ativado ocasionalmente via JavaScript */
+/* Ondas de poeira mais dramáticas */
 .dust-wave {
     position: fixed;
     top: 0;
@@ -2385,12 +2362,12 @@ body::before {
     height: 100%;
     background: linear-gradient(to right, 
         transparent 0%, 
-        var(--wasteland-dust) 40%, 
-        var(--wasteland-dust) 60%, 
+        rgba(210, 180, 140, 0.3) 40%, /* Mais opaco */
+        rgba(210, 180, 140, 0.3) 60%, /* Mais opaco */
         transparent 100%
     );
     opacity: 0;
-    z-index: 5;
+    z-index: 12; /* Aumentei o z-index */
     pointer-events: none;
     animation: dustWave 8s ease-in-out forwards;
 }
@@ -2401,13 +2378,22 @@ body::before {
         opacity: 0;
     }
     20% {
-        opacity: 0.6;
+        opacity: 0.8; /* Mais opaco */
     }
     80% {
-        opacity: 0.6;
+        opacity: 0.8; /* Mais opaco */
     }
     100% {
         left: 100%;
         opacity: 0;
     }
-} 
+}
+
+/* Melhoria nas cores de wasteland */
+:root {
+    --wasteland-amber: rgba(153, 101, 21, 0.8); /* Mais intenso */
+    --wasteland-orange: rgba(204, 110, 32, 0.9); /* Mais intenso */
+    --wasteland-red: rgba(139, 46, 46, 0.7); /* Mais intenso */
+    --wasteland-dust: rgba(210, 180, 140, 0.5); /* Mais intenso */
+    --wasteland-rust: rgba(142, 68, 38, 0.8); /* Mais intenso */
+}

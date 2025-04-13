@@ -6,11 +6,25 @@
     <title>Geoprocessamento com GNN - Análise de Dados Geoespaciais</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600&family=Titillium+Web:wght@300;400;600&family=Exo+2:wght@200;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Elementos Cyberpunk UI -->
+    <div class="cyberpunk-cursor"></div>
+    <div class="click-highlight"></div>
+    <div class="neural-network-bg"></div>
+    
     <header>
         <nav>
-            <div class="logo">Geo Analysis</div>
+            <div class="logo">Geo Analysis <span class="primary-color">AI</span></div>
+            <div class="data-processor">
+                <div class="processor-lights">
+                    <div class="light"></div>
+                    <div class="light"></div>
+                    <div class="light"></div>
+                </div>
+                <div class="processor-label">System: Online</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Início</a></li>
                 <li><a href="exploratory.html">Análise Exploratória</a></li>
@@ -27,11 +41,16 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Geoprocessamento com GNN</h1>
+                <h1>Geoprocessamento com <span class="primary-color">GNN</span></h1>
                 <p class="subtitle">Análise e Visualização de Dados Geoespaciais para a Cidade de Sorocaba</p>
                 <div class="cta-buttons">
                     <a href="exploratory.html" class="btn primary">Ver Análise Exploratória</a>
                     <a href="models.html" class="btn secondary">Ver Modelos e Resultados</a>
+                </div>
+                <div class="loading-ai">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
                 </div>
             </div>
         </section>
@@ -928,6 +947,33 @@
                 </div>
             </div>
         </section>
+
+        <!-- No final antes do footer, adicionar a seção de processamento de IA -->
+        <section class="ai-processing">
+            <div class="container">
+                <h2><i class="fas fa-brain"></i> Sistema de IA em Processamento</h2>
+                <p class="section-description">Nossa IA de análise geoespacial está continuamente processando dados para oferecer insights em tempo real sobre o território de Sorocaba.</p>
+                
+                <div class="ai-metrics">
+                    <div class="metric">
+                        <div class="metric-value">93.2<span class="percent">%</span></div>
+                        <div class="metric-label">Precisão do Modelo</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">15.7<span class="unit">k</span></div>
+                        <div class="metric-label">Segmentos Processados</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">8.4<span class="unit">TB</span></div>
+                        <div class="metric-label">Dados Analisados</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">24<span class="unit">/7</span></div>
+                        <div class="metric-label">Monitoramento</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -954,5 +1000,41 @@
     </script>
 
     <script src="scripts.js"></script>
+    
+    <!-- Script inline para garantir que o efeito Mad Max seja carregado -->
+    <script>
+        // Garante que o efeito Mad Max seja inicializado imediatamente e novamente após 1 segundo
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM carregado, iniciando efeitos Mad Max");
+            
+            // Força a inicialização imediata
+            if (typeof createMadMaxDustEffect === 'function') {
+                createMadMaxDustEffect();
+                
+                // Reforça o efeito após 1 segundo para garantir
+                setTimeout(function() {
+                    createMadMaxDustEffect();
+                    console.log("Efeito Mad Max reforçado");
+                }, 1000);
+            } else {
+                console.error("Função de efeito Mad Max não encontrada!");
+            }
+        });
+        
+        // Reload imediato para garantir que todos os recursos sejam carregados sem cache
+        if (location.search !== '?nocache') {
+            // Adiciona timestamp para evitar cache
+            const timestamp = new Date().getTime();
+            const script = document.createElement('script');
+            script.src = 'scripts.js?v=' + timestamp;
+            document.body.appendChild(script);
+            
+            // Recarrega os estilos
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'styles.css?v=' + timestamp;
+            document.head.appendChild(link);
+        }
+    </script>
 </body>
 </html> 

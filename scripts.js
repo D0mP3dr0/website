@@ -994,26 +994,65 @@ function setupAIMetricsAnimation() {
 
 // Função para criar efeito de poeira no estilo Mad Max
 function createMadMaxDustEffect() {
+    console.log("Iniciando efeito de poeira Mad Max"); // Debug
+
+    // Remover instância anterior se existir
+    const oldContainer = document.querySelector('.mad-max-dust-container');
+    if (oldContainer) oldContainer.remove();
+    
+    const oldGrain = document.querySelector('.grain-overlay');
+    if (oldGrain) oldGrain.remove();
+    
+    const oldAmber = document.querySelector('.amber-overlay');
+    if (oldAmber) oldAmber.remove();
+    
+    const oldStormIndicator = document.querySelector('.storm-indicator');
+    if (oldStormIndicator) oldStormIndicator.remove();
+
+    // Cria um indicador visual de que a tempestade está ativa
+    const stormIndicator = document.createElement('div');
+    stormIndicator.classList.add('storm-indicator');
+    stormIndicator.style.position = 'fixed';
+    stormIndicator.style.top = '80px';
+    stormIndicator.style.right = '20px';
+    stormIndicator.style.background = 'rgba(210, 180, 140, 0.3)';
+    stormIndicator.style.border = '1px solid rgba(153, 101, 21, 0.8)';
+    stormIndicator.style.borderRadius = '4px';
+    stormIndicator.style.padding = '5px 10px';
+    stormIndicator.style.color = '#fff';
+    stormIndicator.style.fontFamily = 'var(--font-heading)';
+    stormIndicator.style.fontSize = '12px';
+    stormIndicator.style.textTransform = 'uppercase';
+    stormIndicator.style.zIndex = '9999';
+    stormIndicator.style.boxShadow = '0 0 10px rgba(210, 180, 140, 0.5)';
+    stormIndicator.textContent = '🌪️ Modo Mad Max Ativo 🌪️';
+    document.body.appendChild(stormIndicator);
+
     const dustContainer = document.createElement('div');
     dustContainer.classList.add('mad-max-dust-container');
+    dustContainer.style.zIndex = '10'; // Garantir que está à frente
     document.body.appendChild(dustContainer);
     
     // Adiciona o overlay de grão de filme
     const grainOverlay = document.createElement('div');
     grainOverlay.classList.add('grain-overlay');
+    grainOverlay.style.zIndex = '6'; // Garantir que está visível mas atrás das partículas
     document.body.appendChild(grainOverlay);
     
+    // Adiciona um filtro de cor sepia/âmbar para todo o site
+    document.documentElement.style.filter = 'sepia(15%)';
+    
     // Cria partículas de poeira iniciais
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 60; i++) { // Aumentei a quantidade
         createDustParticle();
     }
     
     // Continua criando partículas periodicamente
     setInterval(() => {
-        if (Math.random() > 0.7) {
+        if (Math.random() > 0.5) { // Aumentei a probabilidade
             createDustParticle();
         }
-    }, 200);
+    }, 150); // Reduzi o intervalo
     
     function createDustParticle() {
         const dust = document.createElement('div');
@@ -1024,29 +1063,29 @@ function createMadMaxDustEffect() {
         dust.style.top = `${posY}%`;
         dust.style.left = '-20px';
         
-        // Tamanho aleatório
-        const size = Math.random() * 15 + 5;
+        // Tamanho aleatório (aumentei o tamanho)
+        const size = Math.random() * 20 + 10;
         dust.style.width = `${size}px`;
         dust.style.height = `${size}px`;
         
-        // Opacidade inicial aleatória
-        dust.style.opacity = Math.random() * 0.3 + 0.1;
+        // Opacidade inicial aleatória (aumentei a opacidade)
+        dust.style.opacity = Math.random() * 0.4 + 0.2;
         
-        // Velocidade aleatória
-        const speed = Math.random() * 15 + 10;
+        // Velocidade aleatória (aumentei a velocidade mínima)
+        const speed = Math.random() * 10 + 15;
         
         // Cor aleatória em tons de areia/poeira
         const dustColors = [
-            'rgba(210, 180, 140, 0.4)',  // Tan
-            'rgba(189, 154, 122, 0.4)',  // Desert Sand
-            'rgba(153, 101, 21, 0.3)',   // Amber
-            'rgba(179, 139, 109, 0.3)',  // Desert Dust
-            'rgba(196, 164, 132, 0.4)'   // Sandstorm
+            'rgba(210, 180, 140, 0.6)',  // Tan
+            'rgba(189, 154, 122, 0.6)',  // Desert Sand
+            'rgba(153, 101, 21, 0.5)',   // Amber
+            'rgba(179, 139, 109, 0.5)',  // Desert Dust
+            'rgba(196, 164, 132, 0.6)'   // Sandstorm
         ];
         dust.style.backgroundColor = dustColors[Math.floor(Math.random() * dustColors.length)];
         
         // Adiciona desfoque para parecer mais realista
-        const blurAmount = Math.random() * 2 + 1;
+        const blurAmount = Math.random() * 3 + 1;
         dust.style.filter = `blur(${blurAmount}px)`;
         
         // Adiciona elemento ao container
@@ -1068,40 +1107,106 @@ function createMadMaxDustEffect() {
         };
     }
     
-    // Adiciona ondas de poeira ocasionais
+    // Adiciona ondas de poeira mais frequentes
     setInterval(() => {
-        if (Math.random() > 0.7) {
+        if (Math.random() > 0.5) {
             createDustWave();
         }
-    }, 8000);
+    }, 5000);
+    
+    // Cria manchas de areia fixas nas bordas da tela
+    createSandPatches();
+    
+    function createSandPatches() {
+        // Adiciona 5 manchas de areia em posições aleatórias
+        for (let i = 0; i < 5; i++) {
+            const patch = document.createElement('div');
+            patch.classList.add('sand-patch');
+            
+            // Sempre posicionar nas bordas
+            const position = Math.floor(Math.random() * 4); // 0: topo, 1: direita, 2: baixo, 3: esquerda
+            
+            patch.style.position = 'fixed';
+            patch.style.zIndex = '7';
+            patch.style.width = `${Math.random() * 150 + 50}px`;
+            patch.style.height = `${Math.random() * 150 + 50}px`;
+            patch.style.borderRadius = '50%';
+            patch.style.background = 'radial-gradient(circle, rgba(210, 180, 140, 0.3) 0%, transparent 70%)';
+            patch.style.pointerEvents = 'none';
+            
+            // Posicionar nas bordas
+            if (position === 0) { // topo
+                patch.style.top = '0';
+                patch.style.left = `${Math.random() * 80 + 10}%`;
+            } else if (position === 1) { // direita
+                patch.style.right = '0';
+                patch.style.top = `${Math.random() * 80 + 10}%`;
+            } else if (position === 2) { // baixo
+                patch.style.bottom = '0';
+                patch.style.left = `${Math.random() * 80 + 10}%`;
+            } else { // esquerda
+                patch.style.left = '0';
+                patch.style.top = `${Math.random() * 80 + 10}%`;
+            }
+            
+            document.body.appendChild(patch);
+        }
+    }
     
     function createDustWave() {
+        console.log("Criando onda de poeira"); // Debug
+        
         // Cria várias partículas ao mesmo tempo para simular uma onda
-        for (let i = 0; i < 15; i++) {
-            setTimeout(() => createDustParticle(), i * 50);
+        for (let i = 0; i < 25; i++) {
+            setTimeout(() => createDustParticle(), i * 40);
         }
+        
+        // Atualiza o indicador da tempestade para mostrar que uma onda está acontecendo
+        stormIndicator.style.backgroundColor = 'rgba(153, 101, 21, 0.6)';
+        stormIndicator.style.boxShadow = '0 0 15px rgba(210, 180, 140, 0.7)';
+        stormIndicator.textContent = '🌪️ TEMPESTADE DE AREIA 🌪️';
+        
+        // Restaura após a onda
+        setTimeout(() => {
+            stormIndicator.style.backgroundColor = 'rgba(210, 180, 140, 0.3)';
+            stormIndicator.style.boxShadow = '0 0 10px rgba(210, 180, 140, 0.5)';
+            stormIndicator.textContent = '🌪️ Modo Mad Max Ativo 🌪️';
+        }, 3000);
         
         // Cria o elemento visual de onda de poeira
         const dustWave = document.createElement('div');
         dustWave.classList.add('dust-wave');
+        dustWave.style.zIndex = '8';
         document.body.appendChild(dustWave);
         
         // Remove após a animação
         setTimeout(() => {
             dustWave.remove();
         }, 8000);
-        
-        // Adiciona um som de vento se tiver um sistema de áudio
-        if (window.uiSounds) {
-            // Cria um som de vento
-            const windSound = new Audio('data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+NAwAAAAAAAAAAAAFhpbmcAAAAPAAAAAwAAA3YAlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaW19fX19fX19fX19fX19fX19fX19fX19fX9/f39/f39/f39/f39/f39/f39/f39/f3//////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAUHQ//+xOAAAA30AMuGNQAUAAxiQJAQfG4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sUxAAD0yAGvdGAAgsKihcPJjUAEAQBAEA//tA0MTUOAAJ0QBAMQwEAQiAIAgCAIdiUTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==');
-            windSound.volume = 0.3;
-            windSound.play().catch(err => console.log('Erro ao tocar som de vento: ', err));
-        }
     }
     
     // Adiciona uma forte onda de poeira logo no início
     setTimeout(() => {
         createDustWave();
-    }, 1000);
+    }, 500);
+
+    // Adiciona outra onda após um curto período
+    setTimeout(() => {
+        createDustWave();
+    }, 3000);
+    
+    // Aplica o efeito de cor âmbar em todo o site
+    const amberOverlay = document.createElement('div');
+    amberOverlay.classList.add('amber-overlay');
+    amberOverlay.style.position = 'fixed';
+    amberOverlay.style.top = '0';
+    amberOverlay.style.left = '0';
+    amberOverlay.style.width = '100%';
+    amberOverlay.style.height = '100%';
+    amberOverlay.style.background = 'linear-gradient(to right, rgba(153, 101, 21, 0.08), rgba(210, 180, 140, 0.08))';
+    amberOverlay.style.pointerEvents = 'none';
+    amberOverlay.style.zIndex = '4';
+    document.body.appendChild(amberOverlay);
+    
+    console.log("Efeito de poeira Mad Max iniciado"); // Debug
 } 
