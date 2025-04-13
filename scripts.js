@@ -21,9 +21,6 @@ function setupTabs() {
             // Ativar o botão atual e o conteúdo correspondente
             button.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
-            
-            // Efeito sonoro cyberpunk ao mudar de aba
-            playUISound('tab');
         });
     });
 }
@@ -36,9 +33,6 @@ function setupImageZoom() {
         img.addEventListener('click', () => {
             img.classList.toggle('zoomed');
             
-            // Som de interface ao ampliar
-            playUISound('zoom');
-            
             // Adicionar um overlay quando a imagem estiver ampliada
             if (img.classList.contains('zoomed')) {
                 const overlay = document.createElement('div');
@@ -48,13 +42,8 @@ function setupImageZoom() {
                 overlay.style.left = '0';
                 overlay.style.width = '100%';
                 overlay.style.height = '100%';
-                overlay.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.9)';
                 overlay.style.zIndex = '999';
-                
-                // Adicionar efeito de scan na imagem ampliada
-                const scanEffect = document.createElement('div');
-                scanEffect.classList.add('scan-effect');
-                overlay.appendChild(scanEffect);
                 
                 document.body.appendChild(overlay);
                 
@@ -62,7 +51,6 @@ function setupImageZoom() {
                 overlay.addEventListener('click', () => {
                     img.classList.remove('zoomed');
                     overlay.remove();
-                    playUISound('zoom-out');
                 });
             } else {
                 // Remover overlay quando o zoom for desativado
@@ -675,9 +663,6 @@ function setupButtonFunctionality() {
         button.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             if (href) {
-                // Previne comportamento padrão para debugging
-                // e.preventDefault();
-                
                 // Adiciona efeito visual de clique
                 this.classList.add('clicked');
                 setTimeout(() => {
@@ -686,13 +671,7 @@ function setupButtonFunctionality() {
                 
                 // Redireciona apenas se for um link válido (não "#")
                 if (href !== '#') {
-                    // Log para debugging
                     console.log('Navegando para: ' + href);
-                    
-                    // Adiciona um pequeno delay para o efeito visual ser notado
-                    // setTimeout(() => {
-                    //     window.location.href = href;
-                    // }, 200);
                 }
             }
         });
@@ -754,21 +733,23 @@ function setupButtonFunctionality() {
 }
 
 // Adicionar funcionalidade de rolagem suave aos links internos
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Ajuste para considerar o header fixo
-                behavior: 'smooth'
-            });
-        }
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Ajuste para considerar o header fixo
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-});
+}
 
 // Cria o background de rede neural
 function createNeuralNetworkBackground() {

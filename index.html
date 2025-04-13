@@ -6,24 +6,25 @@
     <title>Geoprocessamento com GNN - Análise de Dados Geoespaciais</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600&family=Titillium+Web:wght@300;400;600&family=Exo+2:wght@200;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Elementos Cyberpunk UI -->
+    <!-- Elementos UI Cyberpunk -->
     <div class="cyberpunk-cursor"></div>
     <div class="click-highlight"></div>
     <div class="neural-network-bg"></div>
+    <div class="scanlines"></div>
     
     <header>
         <nav>
-            <div class="logo">Geo Analysis <span class="primary-color">AI</span></div>
+            <div class="logo">Geo<span class="primary-color">Neural</span> Analysis</div>
             <div class="data-processor">
                 <div class="processor-lights">
                     <div class="light"></div>
                     <div class="light"></div>
                     <div class="light"></div>
                 </div>
-                <div class="processor-label">System: Online</div>
+                <div class="processor-label">Sistema: <span class="success-color">Online</span></div>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Início</a></li>
@@ -35,6 +36,9 @@
                     <a href="index_en.html">EN</a>
                 </li>
             </ul>
+            <div class="theme-toggle">
+                <i class="fas fa-adjust"></i>
+            </div>
         </nav>
     </header>
 
@@ -43,6 +47,20 @@
             <div class="container">
                 <h1>Geoprocessamento com <span class="primary-color">GNN</span></h1>
                 <p class="subtitle">Análise e Visualização de Dados Geoespaciais para a Cidade de Sorocaba</p>
+                <div class="ai-metrics">
+                    <div class="metric">
+                        <span class="metric-label">Processamento</span>
+                        <span class="metric-value">98.7%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Precisão</span>
+                        <span class="metric-value">94.3%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Dados</span>
+                        <span class="metric-value">12.8TB</span>
+                    </div>
+                </div>
                 <div class="cta-buttons">
                     <a href="exploratory.html" class="btn primary">Ver Análise Exploratória</a>
                     <a href="models.html" class="btn secondary">Ver Modelos e Resultados</a>
@@ -978,7 +996,36 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023-2024 MBA em Ciência de Dados e Inteligência Artificial</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre o Projeto</h3>
+                    <p>Projeto de análise geoespacial utilizando Redes Neurais de Grafos para análise urbana da cidade de Sorocaba.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="exploratory.html">Análise Exploratória</a></li>
+                        <li><a href="models.html">Modelos & Resultados</a></li>
+                        <li><a href="https://github.com/D0mP3dr0/geoprocessing_gnn">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> contato@geoprocessing-ai.com</p>
+                    <p><i class="fas fa-code-branch"></i> v2.5.3 - Última atualização: <span class="update-date">15.07.2023</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Projeto GeoNeural Analysis. Todos os direitos reservados.</p>
+                <div class="footer-processor">
+                    <div class="processor-lights">
+                        <div class="light"></div>
+                        <div class="light"></div>
+                    </div>
+                    <span>Algoritmo: Ativo</span>
+                </div>
+            </div>
         </div>
     </footer>
 

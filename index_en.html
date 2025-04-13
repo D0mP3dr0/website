@@ -6,11 +6,25 @@
     <title>Geoprocessing with GNN - Geospatial Data Analysis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Cyberpunk UI Elements -->
+    <div class="cyberpunk-cursor"></div>
+    <div class="click-highlight"></div>
+    <div class="neural-network-bg"></div>
+    
     <header>
         <nav>
-            <div class="logo">Geo Analysis</div>
+            <div class="logo">Geo<span class="primary-color">Neural</span> Analysis</div>
+            <div class="data-processor">
+                <div class="processor-lights">
+                    <div class="light"></div>
+                    <div class="light"></div>
+                    <div class="light"></div>
+                </div>
+                <div class="processor-label">System: Online</div>
+            </div>
             <ul class="nav-links">
                 <li><a href="index_en.html" class="active">Home</a></li>
                 <li><a href="exploratory_en.html">Exploratory Analysis</a></li>
@@ -27,11 +41,16 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Geoprocessing with GNN</h1>
+                <h1>Geoprocessing with <span class="primary-color">GNN</span></h1>
                 <p class="subtitle">Geospatial Data Analysis and Visualization for the City of Sorocaba</p>
                 <div class="cta-buttons">
                     <a href="exploratory_en.html" class="btn primary">See Exploratory Analysis</a>
                     <a href="models_en.html" class="btn secondary">See Models and Results</a>
+                </div>
+                <div class="loading-ai">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
                 </div>
             </div>
         </section>
@@ -930,7 +949,29 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023-2024 MBA in Data Science and Artificial Intelligence</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About the Project</h3>
+                    <p>Geospatial analysis project using Graph Neural Networks for urban analysis of the city of Sorocaba.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index_en.html">Home</a></li>
+                        <li><a href="exploratory_en.html">Exploratory Analysis</a></li>
+                        <li><a href="models_en.html">Models & Results</a></li>
+                        <li><a href="https://github.com/D0mP3dr0/geoprocessing_gnn">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@geoprocessing-ai.com</p>
+                    <p><i class="fas fa-code-branch"></i> v2.5.3 - Last update: <span class="update-date">07.15.2023</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GeoNeural Analysis Project. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
