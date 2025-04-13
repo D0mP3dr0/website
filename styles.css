@@ -164,53 +164,59 @@ section {
 }
 
 .btn {
+    position: relative;
     display: inline-block;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: var(--background-dark);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius);
-    text-decoration: none;
-    font-weight: 600;
+    padding: 12px 24px;
+    background: var(--primary-glow);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-md);
-    border: none;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    position: relative;
+    text-decoration: none;
     overflow: hidden;
-    font-family: var(--font-heading);
+    transition: all 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.5);
+    margin: 10px;
+    z-index: 5;
 }
 
-.btn::before {
+.btn:before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb), 0.2), transparent);
     transition: left 0.7s ease;
 }
 
 .btn:hover {
-    box-shadow: var(--neon-glow);
     transform: translateY(-3px);
-    color: var(--background-dark);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.7);
 }
 
-.btn:hover::before {
+.btn:hover:before {
     left: 100%;
 }
 
+.btn:active, .btn.clicked {
+    transform: translateY(2px);
+    box-shadow: 0 0 5px rgba(var(--primary-rgb), 0.5);
+}
+
 .btn.primary {
-    background: linear-gradient(45deg, var(--primary-color), #00b8d4);
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+    border-color: var(--primary-color);
 }
 
 .btn.secondary {
-    background: linear-gradient(45deg, var(--secondary-color), #6a11cb);
+    background: linear-gradient(45deg, var(--secondary-dark), var(--secondary-color));
+    border-color: var(--secondary-color);
 }
 
 .btn.accent {
@@ -240,6 +246,10 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, rgba(18, 24, 35, 0.95) 0%, rgba(12, 16, 24, 0.85) 100%);
+    backdrop-filter: blur(5px);
 }
 
 .logo {
@@ -274,37 +284,42 @@ nav {
 }
 
 .nav-links a {
-    color: var(--text-color);
-    font-weight: 600;
-    padding: 0.5rem 0;
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    position: relative;
+    padding: 8px 12px;
+    margin: 0 5px;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-glow);
-}
-
-.nav-links a::after {
+.nav-links a:before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 2px;
     background-color: var(--primary-color);
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-    box-shadow: var(--neon-glow);
+.nav-links a:hover:before, .nav-links a.active:before {
+    width: 80%;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-glow);
+}
+
+.nav-links a.clicked {
+    animation: nav-click 0.3s ease;
+}
+
+@keyframes nav-click {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
 }
 
 /* Footer */
@@ -421,39 +436,41 @@ footer .container {
 }
 
 .feature-card {
-    background: rgba(9, 0, 43, 0.6);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
-    transition: all 0.5s ease;
-    border: 1px solid var(--border-color);
-    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    background: rgba(25, 33, 42, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    z-index: 1;
+    position: relative;
 }
 
-.feature-card::before {
+.feature-card:before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, transparent 50%, rgba(0, 240, 255, 0.1) 50%);
-    background-size: 10px 10px;
-    z-index: -1;
-    opacity: 0.1;
-    transition: opacity 0.5s ease;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--neon-glow);
-    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.5);
 }
 
-.feature-card:hover::before {
-    opacity: 0.2;
+.feature-card:hover:before {
+    opacity: 1;
+}
+
+.feature-card:active, .feature-card.pulse {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card i {
@@ -490,6 +507,17 @@ footer .container {
 
 .feature-card:hover h3::after {
     width: 60px;
+}
+
+/* Animação de pulse para cards */
+@keyframes card-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
+}
+
+.feature-card.pulse {
+    animation: card-pulse 0.5s forwards;
 }
 
 /* Methodology Steps */
@@ -623,15 +651,19 @@ footer .container {
 }
 
 .result-card {
-    background-color: rgba(9, 0, 43, 0.6);
-    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    background: rgba(25, 33, 42, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
 }
 
 .result-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--neon-glow);
-    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.5);
 }
 
 .result-icon {
@@ -709,33 +741,41 @@ footer .container {
 }
 
 .tool-card {
-    background-color: rgba(9, 0, 43, 0.6);
-    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
-    position: relative;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    background: rgba(25, 33, 42, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    position: relative;
 }
 
 .tool-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
-    transition: left 0.7s ease;
-    z-index: 0;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--neon-glow);
-    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.5);
 }
 
 .tool-card:hover::before {
-    left: 100%;
+    opacity: 1;
+}
+
+.tool-card:active, .tool-card.pulse {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tool-icon {
@@ -777,16 +817,28 @@ footer .container {
 }
 
 .analysis-card {
-    background-color: rgba(9, 0, 43, 0.6);
-    border: 1px solid var(--border-color);
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    background: rgba(25, 33, 42, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    position: relative;
 }
 
 .analysis-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--neon-glow);
-    border-color: var(--primary-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.5);
+}
+
+.analysis-card:hover::before {
+    opacity: 1;
+}
+
+.analysis-card:active, .analysis-card.pulse {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .analysis-card h3 {
@@ -1144,20 +1196,16 @@ footer .container {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.04), transparent);
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
     pointer-events: none;
     opacity: 0.3;
-    z-index: 9999;
-    animation: scanline 8s linear infinite;
-}
-
-@keyframes scanline {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(100%);
-    }
+    z-index: 1;
 }
 
 /* Add to body element with JS */
@@ -1544,55 +1592,52 @@ pre code {
 
 /* Custom Cyberpunk Cursor */
 .cyberpunk-cursor {
-    width: 25px;
-    height: 25px;
+    position: fixed;
+    width: 24px;
+    height: 24px;
     border: 2px solid var(--primary-color);
     border-radius: 50%;
-    position: fixed;
-    transform: translate(-50%, -50%);
     pointer-events: none;
+    transform: translate(-50%, -50%);
     z-index: 9999;
-    transition: width 0.2s, height 0.2s, border-color 0.2s;
-    mix-blend-mode: screen;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s;
+    mix-blend-mode: difference;
+    box-shadow: 0 0 8px var(--primary-glow);
 }
 
-.cyberpunk-cursor::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 5px;
-    height: 5px;
+.cyberpunk-cursor.active {
+    width: 18px;
+    height: 18px;
     background-color: var(--primary-color);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-color);
 }
 
 .cyberpunk-cursor.hovering {
-    width: 40px;
-    height: 40px;
-    border-color: var(--accent-color);
-    backdrop-filter: blur(2px);
+    width: 32px;
+    height: 32px;
+    background-color: rgba(var(--primary-rgb), 0.2);
+    transition: width 0.1s, height 0.1s;
 }
 
 .click-highlight {
     position: fixed;
-    width: 50px;
-    height: 50px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    border: 2px solid var(--primary-color);
-    transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
     z-index: 9998;
-    opacity: 0;
-    transition: transform 0.5s cubic-bezier(0, 0.55, 0.45, 1), opacity 0.5s;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    box-shadow: 0 0 0 0 var(--primary-color);
+    animation: click-ripple 0.6s ease-out;
 }
 
-.click-highlight.active {
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0.3;
-    border-color: var(--accent-color);
+@keyframes click-ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.8);
+    }
+    100% {
+        box-shadow: 0 0 0 50px rgba(var(--primary-rgb), 0);
+    }
 }
 
 /* Data Processor Effect */
@@ -1946,17 +1991,278 @@ img.zoomed {
 
 /* Neural Network Visual Effect */
 .neural-network-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    opacity: 0.05;
-    background-image: radial-gradient(circle at 25% 25%, var(--primary-color) 1px, transparent 1px),
-                      radial-gradient(circle at 75% 75%, var(--secondary-color) 1px, transparent 1px);
-    background-size: 50px 50px;
+    z-index: 0;
     pointer-events: none;
+    opacity: 0.15;
+}
+
+.neural-node {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-glow);
+    animation: node-pulse 3s infinite alternate;
+}
+
+@keyframes node-pulse {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.5); opacity: 0.7; }
+}
+
+.neural-connection {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.data-pulse {
+    position: absolute;
+    width: 5px;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: all 1s linear;
+}
+
+/* Efeitos adicionais para imagens */
+.responsive-img {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.responsive-img:hover {
+    transform: scale(1.02);
+    border-color: rgba(var(--primary-rgb), 0.6);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--primary-glow);
+}
+
+/* Melhorando scanlines */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* Melhorando o visual da navegação */
+nav {
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(180deg, rgba(18, 24, 35, 0.95) 0%, rgba(12, 16, 24, 0.85) 100%);
+    backdrop-filter: blur(5px);
+}
+
+.nav-links a {
+    position: relative;
+    padding: 8px 12px;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-links a:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover:before, .nav-links a.active:before {
+    width: 80%;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-glow);
+}
+
+.nav-links a.clicked {
+    animation: nav-click 0.3s ease;
+}
+
+@keyframes nav-click {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Melhoria nos cards */
+.feature-card, .tool-card, .result-card, .analysis-card {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    background: rgba(25, 33, 42, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+.feature-card:before, .tool-card:before, .result-card:before, .analysis-card:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.feature-card:hover, .tool-card:hover, .result-card:hover, .analysis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(var(--primary-rgb), 0.5);
+}
+
+.feature-card:hover:before, .tool-card:hover:before, .result-card:hover:before, .analysis-card:hover:before {
+    opacity: 1;
+}
+
+.feature-card:active, .tool-card:active, .result-card:active, .analysis-card:active,
+.feature-card.pulse, .tool-card.pulse, .result-card.pulse, .analysis-card.pulse {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Animação de pulse para cards */
+@keyframes card-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
+}
+
+.feature-card.pulse, .tool-card.pulse, .result-card.pulse, .analysis-card.pulse {
+    animation: card-pulse 0.5s forwards;
+}
+
+/* Melhorando botão de tema */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-color));
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+    transition: all 0.3s ease;
+    z-index: 9999;
+    transform: scale(0.9);
+}
+
+.theme-toggle:hover {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.8);
+}
+
+.theme-toggle:active {
+    transform: scale(0.85);
+}
+
+/* Melhorando a animação de flash */
+.theme-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9998;
+    pointer-events: none;
+    animation: flash-animation 0.5s ease-out forwards;
+}
+
+@keyframes flash-animation {
+    0% { opacity: 0.9; }
+    100% { opacity: 0; }
+}
+
+/* Melhoria no background neural */
+.neural-network-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.neural-node {
+    position: absolute;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-glow);
+    animation: node-pulse 3s infinite alternate;
+}
+
+@keyframes node-pulse {
+    0% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.5); opacity: 0.7; }
+}
+
+.neural-connection {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform-origin: left center;
+    pointer-events: none;
+}
+
+.data-pulse {
+    position: absolute;
+    width: 5px;
+    height: 2px;
+    background-color: var(--accent-color);
+    border-radius: 4px;
+    transition: all 1s linear;
+}
+
+/* Efeitos adicionais para imagens */
+.responsive-img {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.responsive-img:hover {
+    transform: scale(1.02);
+    border-color: rgba(var(--primary-rgb), 0.6);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--primary-glow);
 }
 
 /* Responsive Adjustments */

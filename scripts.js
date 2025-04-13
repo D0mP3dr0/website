@@ -364,28 +364,32 @@ function setupCyberpunkCursor() {
     
     document.addEventListener('mousedown', () => {
         cursor.classList.add('active');
-        
-        // Adiciona highlight de clique
-        const clickHighlight = document.createElement('div');
-        clickHighlight.classList.add('click-highlight');
-        clickHighlight.style.left = cursor.style.left;
-        clickHighlight.style.top = cursor.style.top;
-        document.body.appendChild(clickHighlight);
-        
-        // Remove após a animação
-        setTimeout(() => {
-            clickHighlight.remove();
-        }, 600);
     });
     
     document.addEventListener('mouseup', () => {
         cursor.classList.remove('active');
     });
     
-    // Adiciona scanline
+    // Adiciona scanline com z-index menor
     const scanline = document.createElement('div');
     scanline.classList.add('scanline');
+    scanline.style.zIndex = '1';
     document.body.appendChild(scanline);
+    
+    // Esconde o cursor padrão para evitar duplicação
+    document.body.style.cursor = 'none';
+    
+    // Corrige os links e botões para mostrar cursor de ponteiro personalizado
+    const clickableElements = document.querySelectorAll('a, button, .btn, .card, .feature-card, .result-card, .tool-card');
+    clickableElements.forEach(el => {
+        el.style.cursor = 'none';
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hovering');
+        });
+    });
 }
 
 // Função para criar efeito de análise de IA
@@ -577,7 +581,7 @@ function setupThemeSwitching() {
 }
 
 // Inicializar as funções quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Inicializar sistema de áudio
     initAudioSystem();
     
@@ -650,7 +654,101 @@ document.addEventListener('DOMContentLoaded', () => {
             this.style.boxShadow = '0 4px 6px rgba(0, 240, 255, 0.15), 0 2px 4px rgba(139, 0, 255, 0.1)';
         });
     });
+    
+    // Adiciona efeitos cyberpunk AI
+    createNeuralNetworkBackground();
+    createAIProcessorEffects();
+    setupAIMetricsAnimation();
+    
+    // Corrige funcionalidade dos botões
+    setupButtonFunctionality();
 });
+
+// Função para garantir que os botões funcionem corretamente
+function setupButtonFunctionality() {
+    // Corrige os botões CTA na seção hero
+    const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+    ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href) {
+                // Previne comportamento padrão para debugging
+                // e.preventDefault();
+                
+                // Adiciona efeito visual de clique
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 300);
+                
+                // Redireciona apenas se for um link válido (não "#")
+                if (href !== '#') {
+                    // Log para debugging
+                    console.log('Navegando para: ' + href);
+                    
+                    // Adiciona um pequeno delay para o efeito visual ser notado
+                    // setTimeout(() => {
+                    //     window.location.href = href;
+                    // }, 200);
+                }
+            }
+        });
+    });
+    
+    // Corrige os links de navegação
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                // Adiciona efeito visual de clique
+                this.classList.add('clicked');
+                console.log('Navegando para: ' + href);
+            }
+        });
+    });
+    
+    // Corrige botões nas cards
+    const cardButtons = document.querySelectorAll('.feature-card, .result-card, .tool-card');
+    cardButtons.forEach(card => {
+        card.addEventListener('click', function() {
+            // Efeito visual ao clicar
+            this.classList.add('pulse');
+            setTimeout(() => {
+                this.classList.remove('pulse');
+            }, 500);
+            
+            // Se tiver um link dentro do card, ativa-o
+            const cardLink = this.querySelector('a');
+            if (cardLink) {
+                console.log('Navegando para: ' + cardLink.getAttribute('href'));
+                // cardLink.click();
+            }
+        });
+    });
+    
+    // Corrige o botão de tema para garantir que seja clicável
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+        themeToggle.style.zIndex = '9999';
+        themeToggle.style.cursor = 'pointer';
+    }
+    
+    // Ajusta eventos do cursor para melhorar a interação
+    document.addEventListener('mousedown', (e) => {
+        // Adiciona highlight de clique na posição exata do clique
+        const clickHighlight = document.createElement('div');
+        clickHighlight.classList.add('click-highlight');
+        clickHighlight.style.left = e.clientX + 'px';
+        clickHighlight.style.top = e.clientY + 'px';
+        document.body.appendChild(clickHighlight);
+        
+        // Remove após a animação
+        setTimeout(() => {
+            clickHighlight.remove();
+        }, 600);
+    });
+}
 
 // Adicionar funcionalidade de rolagem suave aos links internos
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
