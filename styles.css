@@ -2281,7 +2281,7 @@ nav {
     }
 }
 
-/* Mad Max Dust Effect - Versão 2 com maior visibilidade */
+/* Mad Max Dust Effect - Fixed z-index to be behind content */
 .mad-max-dust-container {
     position: fixed;
     top: 0;
@@ -2289,71 +2289,19 @@ nav {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 15; /* Aumentei o z-index */
+    z-index: -1; /* Changed from 15 to -1 to be behind content */
     overflow: hidden;
 }
 
 .dust-particle {
     position: absolute;
     border-radius: 50%;
-    z-index: 15;
-    box-shadow: 0 0 15px rgba(210, 180, 140, 0.5); /* Sombra mais visível */
+    z-index: -1; /* Changed from 15 to -1 to be behind content */
+    box-shadow: 0 0 15px rgba(210, 180, 140, 0.3); /* Reduced shadow intensity */
     pointer-events: none;
 }
 
-/* Aumenta o filtro âmbar para todo o site */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(153, 101, 21, 0.1), rgba(210, 180, 140, 0.1)); /* Mais visível */
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Efeito mais intenso de luz solar */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40%; /* Maior área */
-    background: radial-gradient(ellipse at top, rgba(255, 140, 50, 0.15) 0%, transparent 70%); /* Mais intenso */
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Grão de filme mais visível */
-.grain-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==');
-    opacity: 0.15; /* Aumentei a opacidade */
-    pointer-events: none;
-    z-index: 5;
-}
-
-/* Cores mais intensas para botões em tema Mad Max */
-.btn.primary {
-    background: linear-gradient(45deg, var(--wasteland-rust), var(--primary-color));
-    border-color: var(--wasteland-orange);
-    box-shadow: 0 0 15px var(--wasteland-orange); /* Sombra mais visível */
-}
-
-.btn.secondary {
-    background: linear-gradient(45deg, var(--wasteland-red), var(--secondary-color));
-    border-color: var(--wasteland-amber);
-    box-shadow: 0 0 15px var(--wasteland-amber); /* Sombra mais visível */
-}
-
-/* Ondas de poeira mais dramáticas */
+/* Improved dust wave to be behind content */
 .dust-wave {
     position: fixed;
     top: 0;
@@ -2362,38 +2310,96 @@ body::before {
     height: 100%;
     background: linear-gradient(to right, 
         transparent 0%, 
-        rgba(210, 180, 140, 0.3) 40%, /* Mais opaco */
-        rgba(210, 180, 140, 0.3) 60%, /* Mais opaco */
+        rgba(210, 180, 140, 0.15) 40%, /* Reduced opacity */
+        rgba(210, 180, 140, 0.15) 60%, /* Reduced opacity */
         transparent 100%
     );
     opacity: 0;
-    z-index: 12; /* Aumentei o z-index */
+    z-index: -2; /* Changed from 12 to -2 to ensure it's behind everything */
     pointer-events: none;
     animation: dustWave 8s ease-in-out forwards;
 }
 
-@keyframes dustWave {
-    0% {
-        left: -100%;
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.8; /* Mais opaco */
-    }
-    80% {
-        opacity: 0.8; /* Mais opaco */
-    }
-    100% {
-        left: 100%;
-        opacity: 0;
-    }
+/* Improved color combination for Mad Max theme */
+:root {
+    /* Improved colors with better contrast and less saturation */
+    --wasteland-amber: rgba(153, 101, 21, 0.4); /* Reduced opacity */
+    --wasteland-orange: rgba(204, 110, 32, 0.5); /* Reduced opacity */
+    --wasteland-red: rgba(139, 46, 46, 0.4); /* Reduced opacity */
+    --wasteland-dust: rgba(210, 180, 140, 0.25); /* Reduced opacity */
+    --wasteland-rust: rgba(142, 68, 38, 0.5); /* Reduced opacity */
 }
 
-/* Melhoria nas cores de wasteland */
-:root {
-    --wasteland-amber: rgba(153, 101, 21, 0.8); /* Mais intenso */
-    --wasteland-orange: rgba(204, 110, 32, 0.9); /* Mais intenso */
-    --wasteland-red: rgba(139, 46, 46, 0.7); /* Mais intenso */
-    --wasteland-dust: rgba(210, 180, 140, 0.5); /* Mais intenso */
-    --wasteland-rust: rgba(142, 68, 38, 0.8); /* Mais intenso */
+/* Fix the amber overlay to be more subtle */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(153, 101, 21, 0.05), rgba(210, 180, 140, 0.05)); /* Reduced intensity */
+    pointer-events: none;
+    z-index: -3; /* Ensure it's behind everything */
+}
+
+/* Improved sun effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: radial-gradient(ellipse at top, rgba(255, 140, 50, 0.07) 0%, transparent 70%); /* Reduced intensity */
+    pointer-events: none;
+    z-index: -4; /* Ensure it's behind everything */
+}
+
+/* Improved grain overlay */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4wNSIvPjwvc3ZnPg==');
+    opacity: 0.08; /* Reduced from 0.15 */
+    pointer-events: none;
+    z-index: -5; /* Ensure it's behind content */
+}
+
+/* Improve buttons and other elements to better fit the theme */
+.btn.primary {
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary-color));
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); /* Changed wasteland color to primary color */
+}
+
+.btn.secondary {
+    background: linear-gradient(45deg, var(--secondary-dark), var(--secondary-color));
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 15px rgba(255, 0, 168, 0.4); /* Changed wasteland color to secondary color */
+}
+
+/* Content sections need higher z-index */
+section {
+    position: relative;
+    z-index: 1; /* Ensure all sections appear above the dust */
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* Ensure containers appear above the dust */
+}
+
+/* Make the storm indicator less obtrusive but still visible */
+.storm-indicator {
+    background-color: rgba(25, 33, 42, 0.8) !important; /* Match site's dark background */
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    font-family: var(--font-heading) !important;
+    font-size: 10px !important; /* Smaller text */
+    padding: 3px 7px !important; /* Smaller padding */
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5) !important; /* Primary color glow */
 }
